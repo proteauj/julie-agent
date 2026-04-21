@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using JulieAgent.Api.Models;
+using JulieAgent.Api.Services;
 
 namespace JulieAgent.Api.Controllers
 {
@@ -9,16 +10,17 @@ namespace JulieAgent.Api.Controllers
     [Route("api/[controller]")]
     public class ChatController : ControllerBase
     {
-        [HttpPost]
-        public ActionResult<ChatResponseDto> Post([FromBody] ChatMessageDto dto)
+        private readonly OpenAiChatService _openAiService;
+
+        public ChatController(OpenAiChatService openAiService)
         {
-            // TODO: remplacer ici par appel à un vrai LLM si voulu
-            var answer = dto.Message switch
-            {
-                string m when m.Contains("bonjour", StringComparison.OrdinalIgnoreCase) => "Bonjour ! 👋",
-                string m when m.Contains("qui es-tu", StringComparison.OrdinalIgnoreCase) => "Je suis Julie, ton agent virtuel !",
-                _ => "Réponse automatique : " + dto.Message
-            };
+            _openAiService = openAiService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ChatResponseDto>> Post([FromBody] ChatMessageDto dto)
+        {
+            var answer = await _openAiService.GetChatCompletion(dto.Message);
             return Ok(new ChatResponseDto { Response = answer });
         }
     }
