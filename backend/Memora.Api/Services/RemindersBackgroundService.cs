@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Hosting;
+using Memora.Api.Services;
 
 public class RemindersBackgroundService : BackgroundService
 {
