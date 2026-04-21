@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/JulieAgent.Api.props" />
+</Project>
