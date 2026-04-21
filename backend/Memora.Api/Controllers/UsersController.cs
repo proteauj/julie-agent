@@ -64,5 +64,18 @@ namespace Memora.Api.Controllers
                 user.NotificationPreference
             });
         }
+
+        // PATCH api/users/{id}/favorite-doctor
+        [HttpPatch("{id}/favorite-doctor")]
+        [Authorize]
+        public IActionResult SetFavoriteDoctor(int id, [FromBody] int doctorId)
+        {
+            var user = _context.Users.Find(id);
+            var doctor = _context.Doctors.Find(doctorId);
+            if (user == null || doctor == null) return NotFound();
+            user.FavoriteDoctorId = doctor.Id;
+            _context.SaveChanges();
+            return Ok();
+        }
     }
 }

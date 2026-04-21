@@ -10,5 +10,6 @@ namespace Memora.Api.Models
         // Navigation properties
         public List<User> Seniors { get; set; } = new();
         public List<FacilityAdmin> FacilityAdmins { get; set; } = new();
+        public List<Doctor> Doctors { get; set; } = new();
     }
 }
