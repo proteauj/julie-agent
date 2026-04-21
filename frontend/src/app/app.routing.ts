@@ -6,7 +6,9 @@ import { ChatComponent } from './chat/chat.component';
 const routes: Routes = [
   { path: '', redirectTo: 'chat', pathMatch: 'full' },
   { path: 'chat', component: ChatComponent },
-  { path: 'profil', component: ProfileComponent },
+  { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
+  { path: 'register', loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent) },
   { path: '**', redirectTo: 'chat' }
 ];
 
@@ -15,3 +17,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+import { AuthGuard } from './services/auth.guard';
+

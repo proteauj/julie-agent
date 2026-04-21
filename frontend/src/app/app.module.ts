@@ -7,6 +7,8 @@ import { ProfileComponent } from './profile/profile.components';
 import { ChatComponent } from './chat/chat.component';
 import { AppRoutingModule } from './app.routing';
 import { AppTranslateModule } from './app.translate.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AppTranslateModule } from './app.translate.module';
     AppRoutingModule,
     AppTranslateModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,8 @@
 <nav>
   <a routerLink="/chat" routerLinkActive="active">Chat</a> |
-  <a routerLink="/profil" routerLinkActive="active">Profil</a>
+  <a routerLink="/profil" *ngIf="isLogged$ | async" routerLinkActive="active">Profil</a> |
+  <a (click)="logout()" *ngIf="isLogged$ | async" href="#">Déconnexion</a>
+  <a routerLink="/login" *ngIf="!(isLogged$ | async)">Connexion</a>
   <span style="float:right">
     <button (click)="switchLang('fr')">FR</button>
     <button (click)="switchLang('en')">EN</button>

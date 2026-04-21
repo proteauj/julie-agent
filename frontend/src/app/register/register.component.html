@@ -1,0 +1,10 @@
+<h2>Créer un compte</h2>
+<form (ngSubmit)="register()">
+  <div><input [(ngModel)]="email" name="email" placeholder="Email" required></div>
+  <div><input [(ngModel)]="password" name="password" type="password" placeholder="Mot de passe" required></div>
+  <div><input [(ngModel)]="nom" name="nom" placeholder="Votre nom"></div>
+  <div *ngIf="error" style="color:red">{{ error }}</div>
+  <div *ngIf="success" style="color:green">Compte créé !</div>
+  <button type="submit">Créer le compte</button>
+</form>
+<a routerLink="/login">J’ai déjà un compte</a>
