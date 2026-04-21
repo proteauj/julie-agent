@@ -13,11 +13,14 @@ namespace Memora.Api.Controllers
 
         private readonly MedicalLlmService _medLlm;
         private readonly OpenAiChatService _openai;
+        private readonly MessageHistoryService _history;
+        private readonly ReminderService _reminderService;
 
-        public ChatController(MedicalLlmService medLlm, OpenAiChatService openai, MessageHistoryService history) {
+        public ChatController(MedicalLlmService medLlm, OpenAiChatService openai, MessageHistoryService history, ReminderService reminderService) {
             _medLlm = medLlm;
             _openai = openai;
             _history = history;
+            _reminderService = reminderService;
         }
 
         private bool IsMedical(string question)
@@ -33,8 +36,6 @@ namespace Memora.Api.Controllers
                 txt.Contains("pourquoi") && txt.Contains("médicament") ||
                 txt.Contains("à quoi sert") && txt.Contains("médicament");
         }
-
-        private readonly MessageHistoryService _history;
 
         [HttpPost]
         public async Task<ActionResult<ChatResponseDto>> Post([FromBody] ChatMessageDto dto)
