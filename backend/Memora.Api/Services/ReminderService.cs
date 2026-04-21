@@ -1,7 +1,6 @@
 using Memora.Api.Data;
 using Memora.Api.Models;
 using Microsoft.EntityFrameworkCore;
-using Memora.Api.Services;
 
 namespace Memora.Api.Services
 {
@@ -9,13 +8,16 @@ namespace Memora.Api.Services
     {
         private readonly DataContext _db;
         private readonly SmsService _smsService;
+
         public ReminderService(DataContext db, SmsService smsService)
         {
             _db = db;
             _smsService = smsService;
         }
 
-        public async Task<List<Reminder>> GetUpcomingRemindersAsync(string userId, int hours = 24)
+        // userId est maintenant un int PARTOUT
+
+        public async Task<List<Reminder>> GetUpcomingRemindersAsync(int userId, int hours = 24)
         {
             var now = DateTime.UtcNow;
             var end = now.AddHours(hours);
@@ -25,7 +27,7 @@ namespace Memora.Api.Services
                 .ToListAsync();
         }
 
-        public async Task AddReminderAsync(string userId, string text, DateTime date)
+        public async Task AddReminderAsync(int userId, string text, DateTime date)
         {
             var reminder = new Reminder
             {
@@ -48,7 +50,7 @@ namespace Memora.Api.Services
             }
         }
 
-        public async Task<List<Reminder>> GetAllRemindersAsync(string userId)
+        public async Task<List<Reminder>> GetAllRemindersAsync(int userId)
         {
             return await _db.Reminders
                 .Where(r => r.UserId == userId)

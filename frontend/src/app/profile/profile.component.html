@@ -10,6 +10,17 @@
       <input [(ngModel)]="user.nom" name="nom">
     </div>
     <div>
+        <label>Téléphone : </label>
+        <input [(ngModel)]="user.phone" name="phone" type="tel">
+    </div>
+    <div>
+        <label>Préférence rappel : </label>
+        <select [(ngModel)]="user.notificationPreference" name="notificationPreference">
+            <option value="sms">SMS</option>
+            <option value="email">Email</option>
+        </select>
+    </div>
+    <div>
       <label>{{ 'PROFILE.LANGUA' | translate }} : </label>
       <select [(ngModel)]="user.languePreferree" name="langue">
         <option value="fr">Français</option>

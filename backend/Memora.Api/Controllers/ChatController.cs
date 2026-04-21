@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Memora.Api.Models;
 using Memora.Api.Services;
+using Memora.Api.Data;
 
 namespace Memora.Api.Controllers
 {
@@ -15,12 +16,14 @@ namespace Memora.Api.Controllers
         private readonly OpenAiChatService _openai;
         private readonly MessageHistoryService _history;
         private readonly ReminderService _reminderService;
+        private readonly DataContext _db;
 
-        public ChatController(MedicalLlmService medLlm, OpenAiChatService openai, MessageHistoryService history, ReminderService reminderService) {
+        public ChatController(MedicalLlmService medLlm, OpenAiChatService openai, MessageHistoryService history, ReminderService reminder, DataContext db) {
             _medLlm = medLlm;
             _openai = openai;
             _history = history;
-            _reminderService = reminderService;
+            _reminderService = reminder;
+            _db = db;
         }
 
         private bool IsMedical(string question)
@@ -40,7 +43,11 @@ namespace Memora.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ChatResponseDto>> Post([FromBody] ChatMessageDto dto)
         {
-            var userId = User.FindFirst("sub")?.Value ?? "anonymous";
+            var email = User.FindFirst("email")?.Value;
+            var user = _db.Users.FirstOrDefault(u => u.Email == email);
+            if (user == null) return Unauthorized();
+            int userId = user.Id;
+
             await _history.AddMessageAsync(userId, "user", dto.Message);
 
             string answer;

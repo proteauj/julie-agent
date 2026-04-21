@@ -42,6 +42,8 @@ namespace Memora.Api.Controllers
             dbUser.Email = user.Email;
             dbUser.Nom = user.Nom;
             dbUser.LanguePreferree = user.LanguePreferree;
+            dbUser.Phone = user.Phone;
+            dbUser.NotificationPreference = user.NotificationPreference;
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -53,7 +55,14 @@ namespace Memora.Api.Controllers
             var email = User.FindFirst("email")?.Value ?? User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user == null) return NotFound();
-            return Ok(new { user.Id, user.Email, user.Nom, user.LanguePreferree });
+            return Ok(new {
+                user.Id,
+                user.Email,
+                user.Nom,
+                user.LanguePreferree,
+                user.Phone,
+                user.NotificationPreference
+            });
         }
     }
 }

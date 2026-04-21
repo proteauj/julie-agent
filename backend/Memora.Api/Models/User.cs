@@ -19,13 +19,16 @@ namespace Memora.Api.Models
         [Required]
         public string PasswordHash { get; set; } = string.Empty;
         public string Role { get; set; } = "senior";
-        public string Phone { get; set; } = "";
+        [MaxLength(30)]
+        public string? Phone { get; set; }
+
+        [MaxLength(10)]
+        public string NotificationPreference { get; set; } = "sms"; // ou "email"
 
         // Facility membership
         public int? FacilityId { get; set; }
         public Facility? Facility { get; set; }
 
-        public string NotificationPreference { get; set; } = "sms"; // ou "email"
         public int? FavoriteDoctorId { get; set; }
         public Doctor? FavoriteDoctor { get; set; }
 

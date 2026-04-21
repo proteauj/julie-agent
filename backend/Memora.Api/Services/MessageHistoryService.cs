@@ -13,14 +13,14 @@ namespace Memora.Api.Services
             _db = db;
         }
 
-        public async Task AddMessageAsync(string userId, string role, string text)
+        public async Task AddMessageAsync(int userId, string role, string text)
         {
             var msg = new Message { UserId=userId, Role=role, Text=text, SentAt=DateTime.UtcNow };
             _db.Messages.Add(msg);
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<Message>> GetLastMessagesAsync(string userId, int count = 6)
+        public async Task<List<Message>> GetLastMessagesAsync(int userId, int count = 6)
         {
             return await _db.Messages
                 .Where(m => m.UserId == userId)

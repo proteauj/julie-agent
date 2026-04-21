@@ -8,6 +8,8 @@ export interface User {
   email: string;
   nom?: string;
   languePreferree?: string;
+  phone?: string;
+  notificationPreference?: string;
 }
 
 @Injectable({ providedIn: 'root' })

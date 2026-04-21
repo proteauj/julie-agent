@@ -8,7 +8,7 @@ namespace Memora.Api.Models
     {
         public int Id { get; set; }
         [Required]
-        public string UserId { get; set; } = ""; // Ou int si ID user numérique
+        public int UserId { get; set; }// Ou int si ID user numérique
         [Required]
         public string Role { get; set; } = "user"; // "user" ou "assistant"
         [Required]
