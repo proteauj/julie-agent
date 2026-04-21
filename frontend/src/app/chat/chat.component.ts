@@ -7,17 +7,29 @@ import { ChatService } from '../services/chat.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent {
-  messages: {author: string, text: string}[] = [];
+  messages: { author: string, text: string }[] = [];
   input = '';
+  loading = false;
 
   constructor(private chat: ChatService) {}
 
-  async send() {
-    if (this.input.trim()) {
-      this.messages.push({ author: 'Vous', text: this.input });
-      const reply = await this.chat.sendMessage(this.input);
-      this.messages.push({ author: 'Julie', text: reply });
-      this.input = '';
-    }
+  send() {
+    const msg = this.input.trim();
+    if (!msg) return;
+
+    this.messages.push({ author: 'Vous', text: msg });
+    this.input = '';
+    this.loading = true;
+
+    this.chat.sendMessage(msg).subscribe({
+      next: res => {
+        this.messages.push({ author: 'Julie', text: res.response });
+        this.loading = false;
+      },
+      error: _ => {
+        this.messages.push({ author: 'SYSTEM', text: "Erreur : échec communication API." });
+        this.loading = false;
+      }
+    });
   }
 }

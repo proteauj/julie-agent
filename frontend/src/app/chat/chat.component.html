@@ -1,10 +1,11 @@
 <div class="chat">
   <h2>{{ 'CHAT.TITLE' | translate }}</h2>
   <div *ngFor="let m of messages">
-    <b>{{ m.author }}:</b> {{ m.text }}
+    <b>{{ m.author }}</b> : {{ m.text }}
   </div>
   <div class="chat-input">
-    <input [(ngModel)]="input" [placeholder]="'CHAT.PLACEHOLDER' | translate" (keydown.enter)="send()" />
-    <button (click)="send()">{{ 'CHAT.SEND' | translate }}</button>
+    <input [(ngModel)]="input" [placeholder]="'CHAT.PLACEHOLDER' | translate" [disabled]="loading" (keydown.enter)="send()" />
+    <button (click)="send()" [disabled]="loading">{{ 'CHAT.SEND' | translate }}</button>
+    <span *ngIf="loading">⏳</span>
   </div>
 </div>
