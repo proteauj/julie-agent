@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 
-namespace JulieAgent.Api.Services
+namespace Memora.Api.Services
 {
     public class JwtService
     {

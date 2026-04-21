@@ -12,12 +12,12 @@ Ce dossier contient l’API backend du projet Julie-Agent sous .NET, connectée 
    ```
    dotnet restore
    dotnet build
-   dotnet run --project JulieAgent.Api/JulieAgent.Api.csproj
+   dotnet run --project Memora.Api/Memora.Api.csproj
    ```
    L'API démarre sur http://localhost:5000 (ou selon config /env).
 
 ### Organisation
-- `JulieAgent.Api/` : source Web API (.NET)
+- `Memora.Api/` : source Web API (.NET)
 - `schema.sql` : init de la table `users`
 
 Voir README à la racine pour doc fullstack et API doc.

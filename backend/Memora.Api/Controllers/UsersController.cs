@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using JulieAgent.Api.Data;
-using JulieAgent.Api.Models;
+using Memora.Api.Data;
+using Memora.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
-namespace JulieAgent.Api.Controllers
+namespace Memora.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -2,7 +2,7 @@ using OpenAI_API;
 using OpenAI_API.Chat;
 using OpenAI_API.Interfaces;
 
-namespace JulieAgent.Api.Services
+namespace Memora.Api.Services
 {
     public class OpenAiChatService
     {
@@ -39,28 +39,51 @@ namespace JulieAgent.Api.Services
         }
         
 
-        public async Task<string> GetChatCompletion(string message)
+        public async Task<string> GetChatCompletion(string message, List<Message>? history = null)
         {
             bool isMedical = IsMedicalQuestion(message);
             HttpResponseMessage response;
 
             if (isMedical && _config["MedicalLLM:Url"] is { } medicalUrl && medicalUrl != "")
             {
-                // Envoie la requête à l'API HuggingFace
-                using var client = new HttpClient();
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_config["MedicalLLM:Token"]}");
-                var body = new { inputs = message };
-                response = await client.PostAsJsonAsync(medicalUrl, body);
-                var resp = await response.Content.ReadAsStringAsync();
-                // Extrait la réponse selon format de ton modèle (adapter ici)
-                return resp;
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_config["MedicalLLM:Token"]}");
+                    var body = new { inputs = message };
+                    response = await client.PostAsJsonAsync(medicalUrl, body);
+                    if (!response.IsSuccessStatusCode)
+                        return "Sorry, the medical model could not answer.";
+                    var json = await response.Content.ReadAsStringAsync();
+                    // Parse correct HuggingFace response format
+                    try
+                    {
+                        using var doc = JsonDocument.Parse(json);
+                        if (doc.RootElement.ValueKind == JsonValueKind.Array && doc.RootElement.GetArrayLength() > 0)
+                            return doc.RootElement[0].GetProperty("generated_text").GetString() ?? "";
+                        if (doc.RootElement.ValueKind == JsonValueKind.Object)
+                            return doc.RootElement.GetProperty("generated_text").GetString() ?? "";
+                    }
+                    catch { }
+                    return "Medical model returned an unexpected format.";
+                }
             }
 
+            // OpenAI with memory/context
             var api = new OpenAIAPI(_apiKey);
-
             var chat = api.Chat.CreateConversation();
             chat.Model = isMedical ? _medicalModel : _defaultModel;
             chat.AppendSystemMessage(isMedical ? _promptMedical : _promptCompagnon);
+
+            if (history != null)
+            {
+                foreach (var msg in history)
+                {
+                    if (msg.Role == "user")
+                        chat.AppendUserInput(msg.Text);
+                    else if (msg.Role == "assistant")
+                        chat.AppendExampleChatbotOutput(msg.Text);
+                }
+            }
             chat.AppendUserInput(message);
 
             var chatResponse = await chat.GetResponseFromChatbotAsync();

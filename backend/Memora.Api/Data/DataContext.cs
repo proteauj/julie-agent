@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using JulieAgent.Api.Models;
+using Memora.Api.Models;
 
-namespace JulieAgent.Api.Data
+namespace Memora.Api.Data
 {
     public class DataContext : DbContext
     {
@@ -9,6 +9,6 @@ namespace JulieAgent.Api.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<Rappel> Rappels { get; set; }
+        public DbSet<Reminder> Reminders { get; set; }
     }
 }

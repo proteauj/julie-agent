@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace JulieAgent.Api.Models
+namespace Memora.Api.Models
 {
     public class Message
     {

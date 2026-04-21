@@ -1,4 +1,4 @@
-namespace JulieAgent.Api.Models
+namespace Memora.Api.Models
 {
     public class ChatMessageDto
     {

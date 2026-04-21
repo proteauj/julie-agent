@@ -1,8 +1,8 @@
-using JulieAgent.Api.Data;
-using JulieAgent.Api.Models;
+using Memora.Api.Data;
+using Memora.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace JulieAgent.Api.Services
+namespace Memora.Api.Services
 {
     public class MessageHistoryService
     {

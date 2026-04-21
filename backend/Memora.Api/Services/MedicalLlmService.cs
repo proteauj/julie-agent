@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 
-namespace JulieAgent.Api.Services
+namespace Memora.Api.Services
 {
     public class MedicalLlmService
     {
