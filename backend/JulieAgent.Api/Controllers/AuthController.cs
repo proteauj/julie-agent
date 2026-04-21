@@ -2,6 +2,7 @@ using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
 using JulieAgent.Api.Data;
 using JulieAgent.Api.Models;
+using JulieAgent.Api.Services;
 
 [ApiController]
 [Route("api/auth")]
@@ -10,7 +11,7 @@ public class AuthController : ControllerBase
     private readonly DataContext _context;
     private readonly JwtService _jwt;
 
-    public AuthController(DataContext context, JwtService jwt)
+    public AuthController(DataContext context, JulieAgent.Api.Services.JwtService jwt)
     {
         _context = context;
         _jwt = jwt;
