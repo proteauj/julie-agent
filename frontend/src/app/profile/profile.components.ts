@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, User } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -13,22 +15,34 @@ export class ProfileComponent implements OnInit {
     languePreferree: 'fr'
   };
   loaded = false;
+  error = '';
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    // Exemple : récupère user avec id 1 (à adapter selon tes besoins)
-    this.userService.getUser(1).subscribe({
+    this.userService.getMe().subscribe({
       next: user => { this.user = user; this.loaded = true; },
-      error: () => { this.loaded = true; } // Gestion d’erreur simplifiée
+      error: err => {
+        this.loaded = true;
+        this.error = "Impossible de récupérer le profil (non connecté ou erreur API)";
+        if (err.status === 401) {
+          this.auth.logout();
+          this.router.navigate(['/login']);
+        }
+      }
     });
   }
 
   save() {
     if (this.user.id) {
-      this.userService.updateUser(this.user.id, this.user).subscribe();
-    } else {
-      this.userService.createUser(this.user).subscribe(r => this.user = r);
+      this.userService.updateUser(this.user.id, this.user).subscribe({
+        next: user => this.user = user,
+        error: () => this.error = "Échec de sauvegarde"
+      });
     }
   }
 }

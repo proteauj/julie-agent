@@ -18,4 +18,5 @@
     </div>
     <button>{{ 'CHAT.SEND' | translate }}</button>
   </form>
+  <div *ngIf="error" style="color:red">{{ error }}</div>
 </div>
