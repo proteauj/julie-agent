@@ -1,6 +1,21 @@
-<div class="profile">
+<div class="profile" *ngIf="loaded">
   <h2>Profil</h2>
-  <div>Email : {{ user.email }}</div>
-  <div>Nom : {{ user.nom }}</div>
-  <div>Langue préférée : {{ user.langue }}</div>
+  <form (ngSubmit)="save()">
+    <div>
+      <label>Email : </label>
+      <input [(ngModel)]="user.email" name="email" required>
+    </div>
+    <div>
+      <label>Nom : </label>
+      <input [(ngModel)]="user.nom" name="nom">
+    </div>
+    <div>
+      <label>Langue préférée : </label>
+      <select [(ngModel)]="user.languePreferree" name="langue">
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <button>Enregistrer</button>
+  </form>
 </div>

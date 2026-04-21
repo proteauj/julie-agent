@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -9,13 +10,13 @@ export class ChatComponent {
   messages: {author: string, text: string}[] = [];
   input = '';
 
-  send() {
+  constructor(private chat: ChatService) {}
+
+  async send() {
     if (this.input.trim()) {
       this.messages.push({ author: 'Vous', text: this.input });
-      // Simulation réponse bot
-      setTimeout(() => {
-        this.messages.push({ author: 'Julie', text: 'Réponse automatique 🎉' });
-      }, 700);
+      const reply = await this.chat.sendMessage(this.input);
+      this.messages.push({ author: 'Julie', text: reply });
       this.input = '';
     }
   }
