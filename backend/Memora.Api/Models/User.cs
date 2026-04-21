@@ -18,5 +18,17 @@ namespace Memora.Api.Models
         // 🔒 Ajoute ceci pour l'auth (pas relayé au front)
         [Required]
         public string PasswordHash { get; set; } = string.Empty;
+        public string Role { get; set; } = "senior";
+        public string Phone { get; set; } = "";
+
+        // Facility membership
+        public int? FacilityId { get; set; }
+        public Facility? Facility { get; set; }
+
+        public string NotificationPreference { get; set; } = "sms"; // ou "email"
+        public int? FavoriteDoctorId { get; set; }
+        public Doctor? FavoriteDoctor { get; set; }
+
+        public List<Appointment> PersonalSchedule { get; set; } = new();
     }
 }

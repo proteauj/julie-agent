@@ -31,6 +31,8 @@ builder.Services.AddScoped<MedicalLlmService>();
 builder.Services.AddScoped<OpenAiChatService>();
 builder.Services.AddScoped<MessageHistoryService>();
 builder.Services.AddScoped<ReminderService>();
+builder.Services.AddScoped<SmsService>();
+builder.Services.AddHostedService<RemindersBackgroundService>();
 
 builder.Services.AddAuthentication(options =>
 {

@@ -1,0 +1,16 @@
+name: Send Due Reminders
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'    # toutes les 5 minutes (UTC)
+  workflow_dispatch:          # on peut aussi le déclencher manuellement
+
+jobs:
+  ping-vercel-endpoint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call /api/reminders/send-due sur Vercel
+        env:
+          REMINDERS_URL: https://<ton-app>.vercel.app/api/reminders/send-due
+        run: |
+          curl -X POST "$REMINDERS_URL"

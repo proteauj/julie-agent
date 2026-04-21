@@ -1,15 +1,18 @@
 using Memora.Api.Data;
 using Memora.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using Memora.Api.Services;
 
 namespace Memora.Api.Services
 {
     public class ReminderService
     {
         private readonly DataContext _db;
-        public ReminderService(DataContext db)
+        private readonly SmsService _smsService;
+        public ReminderService(DataContext db, SmsService smsService)
         {
             _db = db;
+            _smsService = smsService;
         }
 
         public async Task<List<Reminder>> GetUpcomingRemindersAsync(string userId, int hours = 24)
@@ -51,6 +54,31 @@ namespace Memora.Api.Services
                 .Where(r => r.UserId == userId)
                 .OrderBy(r => r.Date)
                 .ToListAsync();
+        }
+
+        public async Task SendRemindersDueAsync()
+        {
+            var now = DateTime.UtcNow;
+            var dueReminders = await _db.Reminders
+                .Include(r => r.User) // pour accéder au téléphone
+                .Where(r => !r.Done && r.Date <= now)
+                .ToListAsync();
+
+            foreach (var reminder in dueReminders)
+            {
+                if (!string.IsNullOrEmpty(reminder.User?.Phone))
+                {
+                    // Envoie le SMS
+                    _smsService.SendSms(
+                        reminder.User.Phone,
+                        $"Reminder: {reminder.Text} at {reminder.Date:t}"
+                    );
+                }
+                // Option : marquer comme envoyé/done
+                reminder.Done = true;
+            }
+
+            await _db.SaveChangesAsync();
         }
     }
 }
