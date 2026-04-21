@@ -14,5 +14,9 @@ namespace JulieAgent.Api.Models
 
         [MaxLength(10)]
         public string LanguePreferree { get; set; } = "fr";
+
+        // 🔒 Ajoute ceci pour l'auth (pas relayé au front)
+        [Required]
+        public string PasswordHash { get; set; } = string.Empty;
     }
 }

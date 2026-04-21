@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using JulieAgent.Api.Data;
 using JulieAgent.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JulieAgent.Api.Controllers
 {
@@ -43,6 +44,16 @@ namespace JulieAgent.Api.Controllers
             dbUser.LanguePreferree = user.LanguePreferree;
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [Authorize]
+        [HttpGet("me")]
+        public IActionResult Me()
+        {
+            var email = User.FindFirst("email")?.Value ?? User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if (user == null) return NotFound();
+            return Ok(new { user.Id, user.Email, user.Nom, user.LanguePreferree });
         }
     }
 }
