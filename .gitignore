@@ -24,3 +24,6 @@ frontend/src/environments/environment*.ts
 # IDEs
 .vscode/
 .idea/
+
+
+/.env
