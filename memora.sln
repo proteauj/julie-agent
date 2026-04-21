@@ -2,9 +2,9 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{D7FACDE7-1038-4122-8124-4E6F9B666EC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memora.Api", "backend\Memora.Api\Memora.Api.csproj", "{159ABC11-263C-4466-8C0B-70844E0FC8EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memora.Api", "backend\Memora.Api\Memora.Api.csproj", "{88B9D681-5D6A-414C-9A38-2BDEFFB1D44D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,10 +14,16 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{159ABC11-263C-4466-8C0B-70844E0FC8EA} = {1AE8ACA6-933B-BF2A-3671-3E2EAC007D16}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D89914D5-FE4B-4080-A9AE-B879333939C9}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88B9D681-5D6A-414C-9A38-2BDEFFB1D44D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B9D681-5D6A-414C-9A38-2BDEFFB1D44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B9D681-5D6A-414C-9A38-2BDEFFB1D44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B9D681-5D6A-414C-9A38-2BDEFFB1D44D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88B9D681-5D6A-414C-9A38-2BDEFFB1D44D} = {D7FACDE7-1038-4122-8124-4E6F9B666EC7}
 	EndGlobalSection
 EndGlobal
