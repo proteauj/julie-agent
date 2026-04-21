@@ -29,6 +29,6 @@ namespace Memora.Api.Models
         public int? FavoriteDoctorId { get; set; }
         public Doctor? FavoriteDoctor { get; set; }
 
-        public List<Appointment> PersonalSchedule { get; set; } = new();
+        public List<Appointment> Appointments { get; set; } = new();
     }
 }
