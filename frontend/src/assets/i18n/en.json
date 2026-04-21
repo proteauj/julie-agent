@@ -1,0 +1,13 @@
+{
+  "PROFILE": {
+    "TITLE": "Profile",
+    "EMAIL": "Email",
+    "NAME": "Name",
+    "LANGUA": "Preferred language"
+  },
+  "CHAT": {
+    "TITLE": "Chat",
+    "PLACEHOLDER": "Message...",
+    "SEND": "Send"
+  }
+}

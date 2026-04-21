@@ -1,0 +1,26 @@
+# .gitignore pour un projet fullstack .NET + Angular
+
+# .NET
+bin/
+obj/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Linux/Mac
+*.DS_Store
+
+# Node/Angular
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+# Angular environment secrets (ne versionne pas .env, ni secrets locaux)
+frontend/src/environments/environment*.ts
+!.env.example
+# IDEs
+.vscode/
+.idea/

@@ -1,7 +1,24 @@
-# Frontend
+# Julie-Agent Frontend (Angular)
 
-Ce dossier contient l'application Angular. Elle est configurée pour une langue par défaut en français et intègre i18n pour les langues française et anglaise.
+Ce dossier contient l’application Angular du projet Julie-Agent.
 
-## Composants principaux
-- Composant Profil Éditable : Gère les informations utilisateur (langue, email).
+## Prérequis
 
+- Node.js (>= 18)
+- Angular CLI : `npm install -g @angular/cli`
+
+## Démarrage local
+
+```sh
+cd frontend
+npm install
+ng serve
+```
+
+## Fonctionnalités
+
+- Auth de base, page de profil, chat simple
+- Multi-langue (fr, en)
+- Consomme l’API backend sur `/api`
+
+---
