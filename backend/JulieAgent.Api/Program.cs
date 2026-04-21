@@ -27,6 +27,10 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<MedicalLlmService>();
+builder.Services.AddScoped<OpenAiChatService>();
+builder.Services.AddScoped<MessageHistoryService>();
+builder.Services.AddScoped<RappelService>();
 
 builder.Services.AddAuthentication(options =>
 {
