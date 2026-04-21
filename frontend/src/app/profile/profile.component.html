@@ -1,21 +1,21 @@
 <div class="profile" *ngIf="loaded">
-  <h2>Profil</h2>
+  <h2>{{ 'PROFILE.TITLE' | translate }}</h2>
   <form (ngSubmit)="save()">
     <div>
-      <label>Email : </label>
+      <label>{{ 'PROFILE.EMAIL' | translate }} : </label>
       <input [(ngModel)]="user.email" name="email" required>
     </div>
     <div>
-      <label>Nom : </label>
+      <label>{{ 'PROFILE.NAME' | translate }} : </label>
       <input [(ngModel)]="user.nom" name="nom">
     </div>
     <div>
-      <label>Langue préférée : </label>
+      <label>{{ 'PROFILE.LANGUA' | translate }} : </label>
       <select [(ngModel)]="user.languePreferree" name="langue">
         <option value="fr">Français</option>
         <option value="en">English</option>
       </select>
     </div>
-    <button>Enregistrer</button>
+    <button>{{ 'CHAT.SEND' | translate }}</button>
   </form>
 </div>

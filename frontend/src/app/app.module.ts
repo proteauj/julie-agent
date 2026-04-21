@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.components';
 import { ChatComponent } from './chat/chat.component';
+import { AppRoutingModule } from './app.routing';
+import { AppTranslateModule } from './app.translate.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ChatComponent } from './chat/chat.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    AppTranslateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
