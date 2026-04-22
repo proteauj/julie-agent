@@ -1,6 +1,6 @@
-# Julie-Agent Frontend (Angular)
+# Aline Écoute Frontend (Angular)
 
-Ce dossier contient l’application Angular du projet Julie-Agent.
+Ce dossier contient l’application Angular du projet Aline Écoute.
 
 ## Prérequis
 

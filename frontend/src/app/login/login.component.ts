@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterLink, TranslateModule],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
@@ -19,7 +24,7 @@ export class LoginComponent {
         if (res.user.role === 'admin') {
           this.router.navigate(['/admin']);
         } else {
-          this.router.navigate(['/agenda']);
+          this.router.navigate(['/home']);
         }
       },
       error: err => (this.error = err.error || 'Erreur de connexion')
