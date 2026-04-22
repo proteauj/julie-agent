@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
-        Title = "Julie API",
+        Title = "Aline Écoute API",
         Version = "v1"
     });
 });
@@ -76,7 +76,7 @@ app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Julie API V1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Aline Écoute API V1");
 });
 
 app.MapControllers();

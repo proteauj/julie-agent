@@ -9,6 +9,7 @@
     "LOGIN": "Connexion",
     "LOGOUT": "Déconnexion"
   },
+
   "COMMON": {
     "LOADING": "Chargement...",
     "EMAIL": "Email",
@@ -29,6 +30,7 @@
     "NAME": "Nom",
     "ACTIONS": "Actions"
   },
+
   "PROFILE": {
     "TITLE": "Profil",
     "EMAIL": "Email",
@@ -39,38 +41,51 @@
     "LANG_FR": "Français",
     "LANG_EN": "English"
   },
+
   "CHAT": {
     "TITLE": "Chat",
     "PLACEHOLDER": "Message...",
     "SEND": "Envoyer"
   },
+
   "LOGIN": {
     "TITLE": "Connexion",
     "SUBMIT": "Se connecter",
     "REGISTER_LINK": "Créer un compte"
   },
+
   "REGISTER": {
     "TITLE": "Créer un compte",
     "SUBMIT": "Créer le compte",
     "LOGIN_LINK": "J’ai déjà un compte"
   },
+
   "ADMIN": {
     "TITLE": "Admin résidence",
     "CREATE_SENIOR": "Créer un compte sénior",
+    "CREATE_ACCOUNT": "Créer le compte",
+
     "SENIORS_LIST": "Liste des séniors",
     "NO_NAME": "Sans nom",
     "NO_PHONE": "Aucun téléphone",
     "RESET_PASSWORD": "Réinitialiser",
+
     "CREATE_ACTIVITY": "Créer une activité",
+    "CREATE_ACTIVITY_BUTTON": "Créer l’activité",
+
     "REGISTER_SENIOR_ACTIVITY": "Inscrire un sénior à une activité",
     "SELECT_SENIOR": "Choisir un sénior",
     "SELECT_ACTIVITY": "Choisir une activité",
     "REGISTER": "Inscrire",
+
     "ACTIVITIES_LIST": "Liste des activités",
     "PLACES": "Places",
+
     "ADD_DOCTOR": "Ajouter un médecin",
     "DOCTORS_LIST": "Liste des médecins",
     "BOOKING_URL": "URL de prise de rendez-vous",
+    "SPECIALTY": "Spécialité",
+
     "SENIOR_ACCOUNT_CREATED": "Compte sénior créé.",
     "PASSWORD_RESET_DONE": "Mot de passe réinitialisé.",
     "ACTIVITY_CREATED": "Activité créée.",
@@ -79,6 +94,7 @@
     "DOCTOR_ADDED": "Médecin ajouté.",
     "DOCTOR_DELETED": "Médecin supprimé."
   },
+
   "AGENDA": {
     "TITLE": "Mon agenda",
     "ADD_APPOINTMENT": "Ajouter un rendez-vous",
@@ -89,6 +105,7 @@
     "ACTIVITY": "Activité",
     "TYPE_UNSPECIFIED": "Non précisé"
   },
+
   "REMINDERS": {
     "TITLE": "Mes rappels",
     "ADD_REMINDER": "Ajouter un rappel",
@@ -111,9 +128,12 @@
     "COMPLETED": "Complété",
     "COMPLETE": "Compléter"
   },
+
   "ACTIVITIES": {
     "TITLE": "Activités",
     "NO_ACTIVITIES": "Aucune activité pour le moment.",
-    "PLACES": "Places"
+    "PLACES": "Places",
+    "REGISTER": "M’inscrire",
+    "UNREGISTER": "Me désinscrire"
   }
 }

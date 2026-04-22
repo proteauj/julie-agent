@@ -25,7 +25,7 @@
       </div>
 
       <div>
-        <label for="phone">Téléphone :</label>
+        <label for="phone">{{ 'PROFILE.PHONE' | translate }} :</label>
         <input
           id="phone"
           [(ngModel)]="user.phone"
@@ -35,15 +35,15 @@
       </div>
 
       <div>
-        <label for="notificationPreference">Préférence rappel :</label>
+        <label for="notificationPreference">{{ 'PROFILE.REMINDER_PREFERENCE' | translate }} :</label>
         <select
           id="notificationPreference"
           [(ngModel)]="user.notificationPreference"
           name="notificationPreference"
         >
-          <option value="sms">SMS</option>
-          <option value="email">Email</option>
-          <option value="both">Les deux</option>
+          <option value="sms">{{ 'COMMON.SMS' | translate }}</option>
+          <option value="email">{{ 'COMMON.EMAIL' | translate }}</option>
+          <option value="both">{{ 'COMMON.BOTH' | translate }}</option>
         </select>
       </div>
 
@@ -54,8 +54,8 @@
           [(ngModel)]="user.languePreferree"
           name="langue"
         >
-          <option value="fr">Français</option>
-          <option value="en">English</option>
+          <option value="fr">{{ 'PROFILE.LANG_FR' | translate }}</option>
+          <option value="en">{{ 'PROFILE.LANG_EN' | translate }}</option>
         </select>
       </div>
 

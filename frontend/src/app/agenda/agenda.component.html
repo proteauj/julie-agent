@@ -1,50 +1,53 @@
 <div class="agenda-page page">
-  <h2>Mon agenda</h2>
+  <h2>{{ 'AGENDA.TITLE' | translate }}</h2>
 
   <p class="error" *ngIf="error">{{ error }}</p>
 
   <section class="card">
-    <h3>Ajouter un rendez-vous</h3>
+    <h3>{{ 'AGENDA.ADD_APPOINTMENT' | translate }}</h3>
 
     <div class="grid">
-      <input [(ngModel)]="form.title" placeholder="Titre" />
+      <input
+        [(ngModel)]="form.title"
+        [placeholder]="'COMMON.TITLE' | translate"
+      />
 
       <textarea
         [(ngModel)]="form.description"
-        placeholder="Description"
+        [placeholder]="'COMMON.DESCRIPTION' | translate"
       ></textarea>
 
       <label>
-        Début
+        {{ 'COMMON.START' | translate }}
         <input [(ngModel)]="form.start" type="datetime-local" />
       </label>
 
       <label>
-        Fin
+        {{ 'COMMON.END' | translate }}
         <input [(ngModel)]="form.end" type="datetime-local" />
       </label>
 
       <select [(ngModel)]="form.type">
-        <option value="personal">Personnel</option>
-        <option value="medical">Médical</option>
-        <option value="activity">Activité</option>
+        <option value="personal">{{ 'AGENDA.PERSONAL' | translate }}</option>
+        <option value="medical">{{ 'AGENDA.MEDICAL' | translate }}</option>
+        <option value="activity">{{ 'AGENDA.ACTIVITY' | translate }}</option>
       </select>
     </div>
 
     <div class="form-actions">
       <button (click)="createAppointment()" [disabled]="loading">
-        Ajouter
+        {{ 'COMMON.ADD' | translate }}
       </button>
     </div>
   </section>
 
   <section class="card">
-    <h3>Mes rendez-vous</h3>
+    <h3>{{ 'AGENDA.MY_APPOINTMENTS' | translate }}</h3>
 
-    <p *ngIf="loading">Chargement...</p>
+    <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
 
     <div *ngIf="!loading && appointments.length === 0">
-      Aucun rendez-vous pour le moment.
+      {{ 'AGENDA.NO_APPOINTMENTS' | translate }}
     </div>
 
     <div *ngFor="let appointment of appointments" class="appointment-row list-row">
@@ -61,7 +64,10 @@
         </span>
         <br />
 
-        <span>Type : {{ appointment.type || 'Non précisé' }}</span>
+        <span>
+          {{ 'COMMON.TYPE' | translate }} :
+          {{ appointment.type || ('AGENDA.TYPE_UNSPECIFIED' | translate) }}
+        </span>
       </div>
     </div>
   </section>

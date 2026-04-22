@@ -1,14 +1,14 @@
 <div class="activities-page page">
-  <h2>Activités</h2>
+  <h2>{{ 'ACTIVITIES.TITLE' | translate }}</h2>
 
   <p class="error" *ngIf="error">{{ error }}</p>
   <p class="success" *ngIf="success">{{ success }}</p>
 
   <section class="card">
-    <p *ngIf="loading">Chargement...</p>
+    <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
 
     <div *ngIf="!loading && activities.length === 0">
-      Aucune activité pour le moment.
+      {{ 'ACTIVITIES.NO_ACTIVITIES' | translate }}
     </div>
 
     <div *ngFor="let activity of activities" class="activity-row list-row">
@@ -22,7 +22,8 @@
         <br />
 
         <span>
-          Places : {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}
+          {{ 'ACTIVITIES.PLACES' | translate }} :
+          {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}
         </span>
       </div>
 
@@ -32,7 +33,7 @@
           (click)="registerToActivity(activity)"
           [disabled]="loading"
         >
-          M’inscrire
+          {{ 'ACTIVITIES.REGISTER' | translate }}
         </button>
 
         <button
@@ -40,7 +41,7 @@
           (click)="unregisterFromActivity(activity)"
           [disabled]="loading"
         >
-          Me désinscrire
+          {{ 'ACTIVITIES.UNREGISTER' | translate }}
         </button>
       </div>
     </div>

@@ -9,7 +9,7 @@ import { AuthService, AuthUser } from './services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Julie-Agent';
+  title = 'Aline Écoute';
   isLogged$: Observable<boolean>;
   currentUser$: Observable<AuthUser | null>;
 

@@ -1,117 +1,117 @@
-<div class="admin-page">
-  <h2>Admin résidence</h2>
+<div class="admin-page page">
+  <h2>{{ 'ADMIN.TITLE' | translate }}</h2>
 
-  <p *ngIf="loading">Chargement...</p>
+  <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
   <p class="success" *ngIf="success">{{ success }}</p>
   <p class="error" *ngIf="error">{{ error }}</p>
 
   <section class="card">
-    <h3>Créer un compte sénior</h3>
+    <h3>{{ 'ADMIN.CREATE_SENIOR' | translate }}</h3>
 
     <div class="grid">
-      <input [(ngModel)]="seniorForm.nom" placeholder="Nom" />
-      <input [(ngModel)]="seniorForm.email" placeholder="Email" type="email" />
-      <input [(ngModel)]="seniorForm.password" placeholder="Mot de passe temporaire" type="password" />
-      <input [(ngModel)]="seniorForm.phone" placeholder="Téléphone" />
+      <input [(ngModel)]="seniorForm.nom" [placeholder]="'COMMON.NAME' | translate" />
+      <input [(ngModel)]="seniorForm.email" [placeholder]="'COMMON.EMAIL' | translate" type="email" />
+      <input [(ngModel)]="seniorForm.password" placeholder="••••••••" type="password" />
+      <input [(ngModel)]="seniorForm.phone" [placeholder]="'COMMON.PHONE' | translate" />
       <select [(ngModel)]="seniorForm.notificationPreference">
-        <option value="sms">SMS</option>
-        <option value="email">Email</option>
-        <option value="both">Les deux</option>
+        <option value="sms">{{ 'COMMON.SMS' | translate }}</option>
+        <option value="email">{{ 'COMMON.EMAIL' | translate }}</option>
+        <option value="both">{{ 'COMMON.BOTH' | translate }}</option>
       </select>
     </div>
 
-    <button (click)="createSenior()">Créer le compte</button>
+    <button (click)="createSenior()">{{ 'ADMIN.CREATE_ACCOUNT' | translate }}</button>
   </section>
 
   <section class="card">
-    <h3>Liste des séniors</h3>
+    <h3>{{ 'ADMIN.SENIORS_LIST' | translate }}</h3>
 
-    <div *ngFor="let senior of seniors" class="list-row">
+    <div *ngFor="let senior of seniors" class="list-row admin-row">
       <div>
-        <strong>{{ senior.nom || 'Sans nom' }}</strong><br />
+        <strong>{{ senior.nom || ('ADMIN.NO_NAME' | translate) }}</strong><br />
         <span>{{ senior.email }}</span><br />
-        <span>{{ senior.phone || 'Aucun téléphone' }}</span>
+        <span>{{ senior.phone || ('ADMIN.NO_PHONE' | translate) }}</span>
       </div>
 
       <div class="inline-actions">
         <input
           [(ngModel)]="resetPasswordBySeniorId[senior.id]"
-          placeholder="Nouveau mot de passe"
+          [placeholder]="'ADMIN.RESET_PASSWORD' | translate"
           type="password"
         />
-        <button (click)="resetPassword(senior.id)">Réinitialiser</button>
+        <button (click)="resetPassword(senior.id)">{{ 'COMMON.RESET' | translate }}</button>
       </div>
     </div>
   </section>
 
   <section class="card">
-    <h3>Créer une activité</h3>
+    <h3>{{ 'ADMIN.CREATE_ACTIVITY' | translate }}</h3>
 
     <div class="grid">
-      <input [(ngModel)]="activityForm.name" placeholder="Nom de l’activité" />
+      <input [(ngModel)]="activityForm.name" [placeholder]="'COMMON.NAME' | translate" />
       <input [(ngModel)]="activityForm.start" type="datetime-local" />
-      <input [(ngModel)]="activityForm.maxParticipants" type="number" min="1" placeholder="Places max" />
-      <textarea [(ngModel)]="activityForm.description" placeholder="Description"></textarea>
+      <input [(ngModel)]="activityForm.maxParticipants" type="number" min="1" [placeholder]="'ADMIN.PLACES' | translate" />
+      <textarea [(ngModel)]="activityForm.description" [placeholder]="'COMMON.DESCRIPTION' | translate"></textarea>
     </div>
 
-    <button (click)="createActivity()">Créer l’activité</button>
+    <button (click)="createActivity()">{{ 'ADMIN.CREATE_ACTIVITY_BUTTON' | translate }}</button>
   </section>
 
   <section class="card">
-    <h3>Inscrire un sénior à une activité</h3>
+    <h3>{{ 'ADMIN.REGISTER_SENIOR_ACTIVITY' | translate }}</h3>
 
     <div class="grid">
       <select [(ngModel)]="selectedSeniorIdForRegistration">
-        <option [ngValue]="null">Choisir un sénior</option>
+        <option [ngValue]="null">{{ 'ADMIN.SELECT_SENIOR' | translate }}</option>
         <option *ngFor="let senior of seniors" [ngValue]="senior.id">
           {{ senior.nom || senior.email }}
         </option>
       </select>
 
       <select [(ngModel)]="selectedActivityId">
-        <option [ngValue]="null">Choisir une activité</option>
+        <option [ngValue]="null">{{ 'ADMIN.SELECT_ACTIVITY' | translate }}</option>
         <option *ngFor="let activity of activities" [ngValue]="activity.id">
           {{ activity.name }} ({{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }})
         </option>
       </select>
     </div>
 
-    <button (click)="registerSeniorToActivity()">Inscrire</button>
+    <button (click)="registerSeniorToActivity()">{{ 'ADMIN.REGISTER' | translate }}</button>
   </section>
 
   <section class="card">
-    <h3>Liste des activités</h3>
+    <h3>{{ 'ADMIN.ACTIVITIES_LIST' | translate }}</h3>
 
-    <div *ngFor="let activity of activities" class="list-row">
+    <div *ngFor="let activity of activities" class="list-row admin-row">
       <div>
         <strong>{{ activity.name }}</strong><br />
         <span>{{ activity.description }}</span><br />
         <span>{{ activity.start | date:'medium' }}</span><br />
-        <span>Places: {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}</span>
+        <span>{{ 'ADMIN.PLACES' | translate }}: {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}</span>
       </div>
 
       <div>
-        <button (click)="deleteActivity(activity.id)">Supprimer</button>
+        <button (click)="deleteActivity(activity.id)">{{ 'COMMON.DELETE' | translate }}</button>
       </div>
     </div>
   </section>
 
   <section class="card">
-    <h3>Ajouter un médecin</h3>
+    <h3>{{ 'ADMIN.ADD_DOCTOR' | translate }}</h3>
 
     <div class="grid">
-      <input [(ngModel)]="doctorForm.name" placeholder="Nom" />
-      <input [(ngModel)]="doctorForm.specialty" placeholder="Spécialité" />
-      <input [(ngModel)]="doctorForm.bookingUrl" placeholder="URL de prise de rendez-vous" />
+      <input [(ngModel)]="doctorForm.name" [placeholder]="'COMMON.NAME' | translate" />
+      <input [(ngModel)]="doctorForm.specialty" [placeholder]="'ADMIN.SPECIALTY' | translate" />
+      <input [(ngModel)]="doctorForm.bookingUrl" [placeholder]="'ADMIN.BOOKING_URL' | translate" />
     </div>
 
-    <button (click)="createDoctor()">Ajouter</button>
+    <button (click)="createDoctor()">{{ 'COMMON.ADD' | translate }}</button>
   </section>
 
   <section class="card">
-    <h3>Liste des médecins</h3>
+    <h3>{{ 'ADMIN.DOCTORS_LIST' | translate }}</h3>
 
-    <div *ngFor="let doctor of doctors" class="list-row">
+    <div *ngFor="let doctor of doctors" class="list-row admin-row">
       <div>
         <strong>{{ doctor.name }}</strong><br />
         <span>{{ doctor.specialty }}</span><br />
@@ -121,7 +121,7 @@
       </div>
 
       <div>
-        <button (click)="deleteDoctor(doctor.id)">Supprimer</button>
+        <button (click)="deleteDoctor(doctor.id)">{{ 'COMMON.DELETE' | translate }}</button>
       </div>
     </div>
   </section>
