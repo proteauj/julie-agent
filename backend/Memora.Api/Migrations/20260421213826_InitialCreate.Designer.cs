@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Memora.Migrations
+namespace Memora.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20260421170443_AddPhoneAndNotificationPreferenceToUser")]
-    partial class AddPhoneAndNotificationPreferenceToUser
+    [Migration("20260421213826_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,9 +186,8 @@ namespace Memora.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -267,16 +266,12 @@ namespace Memora.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId1")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Reminders");
                 });
@@ -321,7 +316,7 @@ namespace Memora.Migrations
             modelBuilder.Entity("Doctor", b =>
                 {
                     b.HasOne("Memora.Api.Models.Facility", "Facility")
-                        .WithMany()
+                        .WithMany("Doctors")
                         .HasForeignKey("FacilityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -378,7 +373,7 @@ namespace Memora.Migrations
                 {
                     b.HasOne("Memora.Api.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -416,6 +411,8 @@ namespace Memora.Migrations
 
             modelBuilder.Entity("Memora.Api.Models.Facility", b =>
                 {
+                    b.Navigation("Doctors");
+
                     b.Navigation("FacilityAdmins");
 
                     b.Navigation("Seniors");

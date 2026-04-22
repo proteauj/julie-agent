@@ -1,48 +1,78 @@
 using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Memora.Api.Data;
 using Memora.Api.Models;
 using Memora.Api.Services;
 
-[ApiController]
-[Route("api/auth")]
-public class AuthController : ControllerBase
+namespace Memora.Api.Controllers
 {
-    private readonly DataContext _context;
-    private readonly JwtService _jwt;
-
-    public AuthController(DataContext context, JwtService jwt)
+    [ApiController]
+    [Route("api/auth")]
+    public class AuthController : ControllerBase
     {
-        _context = context;
-        _jwt = jwt;
-    }
+        private readonly DataContext _context;
+        private readonly JwtService _jwt;
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register(UserRegisterDto dto)
-    {
-        if (_context.Users.Any(u => u.Email == dto.Email))
-            return BadRequest("Email déjà utilisé.");
-
-        var user = new User
+        public AuthController(DataContext context, JwtService jwt)
         {
-            Email = dto.Email,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-            Nom = dto.Nom
-        };
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+            _context = context;
+            _jwt = jwt;
+        }
 
-        return Ok(new { user.Id, user.Email, user.Nom });
-    }
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserRegisterDto dto)
+        {
+            if (await _context.Users.AnyAsync(u => u.Email == dto.Email))
+            {
+                return BadRequest("Email déjà utilisé.");
+            }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login(UserLoginDto dto)
-    {
-        var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
-        if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
-            return Unauthorized("Email ou mot de passe invalide.");
+            var user = new User
+            {
+                Email = dto.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Nom = dto.Nom,
+                Role = "senior"
+            };
 
-        var token = _jwt.GenerateToken(user.Id, user.Email);
-        return Ok(new { token });
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                user.Id,
+                user.Email,
+                user.Nom,
+                user.Role
+            });
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(UserLoginDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            {
+                return Unauthorized("Email ou mot de passe invalide.");
+            }
+
+            var token = _jwt.GenerateToken(user.Id, user.Email, user.Role);
+
+            return Ok(new
+            {
+                token,
+                user = new
+                {
+                    user.Id,
+                    user.Email,
+                    user.Nom,
+                    user.Role,
+                    user.FacilityId,
+                    user.NotificationPreference
+                }
+            });
+        }
     }
 }

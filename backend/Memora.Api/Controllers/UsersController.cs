@@ -3,6 +3,8 @@ using Memora.Api.Data;
 using Memora.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Memora.Api.Controllers
 {
@@ -52,16 +54,32 @@ namespace Memora.Api.Controllers
         [HttpGet("me")]
         public IActionResult Me()
         {
-            var email = User.FindFirst("email")?.Value ?? User.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
+            var email =
+                User.FindFirst(ClaimTypes.Email)?.Value ??
+                User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                return Unauthorized();
+            }
+
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
-            if (user == null) return NotFound();
-            return Ok(new {
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new
+            {
                 user.Id,
                 user.Email,
                 user.Nom,
+                user.Role,
                 user.LanguePreferree,
                 user.Phone,
-                user.NotificationPreference
+                user.NotificationPreference,
+                user.FacilityId,
+                user.FavoriteDoctorId
             });
         }
 
