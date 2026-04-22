@@ -7,6 +7,6 @@ public class Activity
     public DateTime Start { get; set; }
     public int MaxParticipants { get; set; }
     public int FacilityId { get; set; }
-    public Facility Facility { get; set; }
+    public Facility Facility { get; set; } = null!;
     public List<UserActivity> UserActivities { get; set; } = new();
 }

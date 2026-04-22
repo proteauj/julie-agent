@@ -27,10 +27,10 @@ namespace Memora.Api.Models
 
         // Facility membership
         public int? FacilityId { get; set; }
-        public Facility? Facility { get; set; }
+        public Facility? Facility { get; set; } = null!;
 
         public int? FavoriteDoctorId { get; set; }
-        public Doctor? FavoriteDoctor { get; set; }
+        public Doctor? FavoriteDoctor { get; set; } = null!;
 
         public List<Appointment> Appointments { get; set; } = new();
     }

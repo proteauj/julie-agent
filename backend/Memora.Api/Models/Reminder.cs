@@ -33,7 +33,7 @@ namespace Memora.Api.Models
 
         public bool IsDone { get; set; } = false;
 
-        public DateTime? CompletedAt { get; set; }
+        public DateTime? CompletedAt { get; set; } = null!;
 
         public bool IsRecurring { get; set; } = false;
 

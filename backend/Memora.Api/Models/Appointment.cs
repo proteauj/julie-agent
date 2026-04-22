@@ -6,7 +6,7 @@ namespace Memora.Api.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }  // Navigation
+        public User User { get; set; } = null!;
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
         public string Title { get; set; } = "";

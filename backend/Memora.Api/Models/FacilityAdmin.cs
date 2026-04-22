@@ -8,7 +8,7 @@ namespace Memora.Api.Models
         public int FacilityId { get; set; }
 
         // Navigation properties
-        public User? User { get; set; }
-        public Facility? Facility { get; set; }
+        public User? User { get; set; } = null!;
+        public Facility? Facility { get; set; } = null!;
     }
 }
