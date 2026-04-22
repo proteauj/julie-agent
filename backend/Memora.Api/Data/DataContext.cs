@@ -34,6 +34,36 @@ namespace Memora.Api.Data
                 .HasOne(fa => fa.Facility)
                 .WithMany(f => f.FacilityAdmins)
                 .HasForeignKey(fa => fa.FacilityId);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(r => r.Title)
+                .HasMaxLength(150);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(r => r.Description)
+                .HasMaxLength(500);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(r => r.Type)
+                .HasMaxLength(30);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(r => r.Channel)
+                .HasMaxLength(20);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(r => r.RecurrenceRule)
+                .HasMaxLength(50);
+
+            modelBuilder.Entity<Reminder>()
+                .Property(r => r.SourceType)
+                .HasMaxLength(30);
+
+            modelBuilder.Entity<Reminder>()
+                .HasOne(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

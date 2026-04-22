@@ -60,14 +60,17 @@ namespace Memora.Api.Controllers
             {
                 var messages = await _history.GetLastMessagesAsync(userId, 6);
                 // Option: fetch reminders and add to systemPrompt
-                var reminders = await _reminderService.GetUpcomingRemindersAsync(userId);
-                string contextReminders = "";
-                if (reminders.Any())
-                {
-                    contextReminders = "Here are some reminders for the user:\n" +
-                        string.Join("\n", reminders.Select(r => $"{r.Date:MMM dd HH:mm}: {r.Text}"));
-                }
-                answer = await _openai.GetChatCompletion(dto.Message, messages, contextReminders);
+                var reminders = await _reminderService.GetUpcomingRemindersAsync(user.Id);
+
+                var remindersText = reminders.Any()
+                    ? string.Join(
+                        "\n",
+                        reminders.Select(r =>
+                            $"- {r.ScheduledAt.ToLocalTime():g}: {r.Title}" +
+                            (string.IsNullOrWhiteSpace(r.Description) ? "" : $" ({r.Description})")))
+                    : "Aucun rappel à venir.";
+
+                answer = await _openai.GetChatCompletion(dto.Message, messages, remindersText);
             }
 
             await _history.AddMessageAsync(userId, "assistant", answer);
