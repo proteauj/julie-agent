@@ -1,20 +1,47 @@
-<div class="activities-page">
+<div class="activities-page page">
   <h2>Activités</h2>
 
   <p class="error" *ngIf="error">{{ error }}</p>
-  <p *ngIf="loading">Chargement...</p>
+  <p class="success" *ngIf="success">{{ success }}</p>
 
   <section class="card">
+    <p *ngIf="loading">Chargement...</p>
+
     <div *ngIf="!loading && activities.length === 0">
       Aucune activité pour le moment.
     </div>
 
-    <div *ngFor="let activity of activities" class="activity-row">
+    <div *ngFor="let activity of activities" class="activity-row list-row">
       <div>
         <strong>{{ activity.name }}</strong><br />
-        <span>{{ activity.description }}</span><br />
-        <span>{{ formatDate(activity.start) }}</span><br />
-        <span>Places : {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}</span>
+
+        <span *ngIf="activity.description">{{ activity.description }}</span>
+        <br *ngIf="activity.description" />
+
+        <span>{{ formatDate(activity.start) }}</span>
+        <br />
+
+        <span>
+          Places : {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}
+        </span>
+      </div>
+
+      <div class="form-actions" *ngIf="activity.canRegister !== false">
+        <button
+          *ngIf="activity.isRegistered !== true"
+          (click)="registerToActivity(activity)"
+          [disabled]="loading"
+        >
+          M’inscrire
+        </button>
+
+        <button
+          *ngIf="activity.isRegistered === true"
+          (click)="unregisterFromActivity(activity)"
+          [disabled]="loading"
+        >
+          Me désinscrire
+        </button>
       </div>
     </div>
   </section>

@@ -1,10 +1,20 @@
-<h2>Créer un compte</h2>
-<form (ngSubmit)="register()">
-  <div><input [(ngModel)]="email" name="email" placeholder="Email" required></div>
-  <div><input [(ngModel)]="password" name="password" type="password" placeholder="Mot de passe" required></div>
-  <div><input [(ngModel)]="nom" name="nom" placeholder="Votre nom"></div>
-  <div *ngIf="error" style="color:red">{{ error }}</div>
-  <div *ngIf="success" style="color:green">Compte créé !</div>
-  <button type="submit">Créer le compte</button>
-</form>
-<a routerLink="/login">J’ai déjà un compte</a>
+<div class="auth-page page">
+  <section class="card">
+    <h2>Créer un compte</h2>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <p class="success" *ngIf="success">{{ success }}</p>
+
+    <div class="auth-form grid">
+      <input [(ngModel)]="nom" type="text" placeholder="Nom" />
+      <input [(ngModel)]="email" type="email" placeholder="Email" />
+      <input [(ngModel)]="password" type="password" placeholder="Mot de passe" />
+    </div>
+
+    <div class="form-actions">
+      <button (click)="register()">Créer le compte</button>
+    </div>
+
+    <a routerLink="/login">J’ai déjà un compte</a>
+  </section>
+</div>

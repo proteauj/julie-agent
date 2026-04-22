@@ -1,11 +1,30 @@
-<div class="chat">
-  <h2>{{ 'CHAT.TITLE' | translate }}</h2>
-  <div *ngFor="let m of messages">
-    <b>{{ m.author }}</b> : {{ m.text }}
-  </div>
-  <div class="chat-input">
-    <input [(ngModel)]="input" [placeholder]="'CHAT.PLACEHOLDER' | translate" [disabled]="loading" (keydown.enter)="send()" />
-    <button (click)="send()" [disabled]="loading">{{ 'CHAT.SEND' | translate }}</button>
-    <span *ngIf="loading">⏳</span>
-  </div>
+<div class="chat-page page">
+  <section class="card">
+    <h2>Parler à l’agent</h2>
+
+    <div class="messages">
+      <div
+        *ngFor="let message of messages"
+        class="message"
+        [ngClass]="message.role"
+      >
+        {{ message.content }}
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="chat-form">
+      <textarea
+        [(ngModel)]="input"
+        placeholder="Écris ton message..."
+      ></textarea>
+
+      <div class="form-actions">
+        <button (click)="send()" [disabled]="loading || !input.trim()">
+          Envoyer
+        </button>
+      </div>
+    </div>
+  </section>
 </div>

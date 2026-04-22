@@ -1,9 +1,15 @@
 <div class="container">
   <nav class="top-nav">
     <a routerLink="/chat">Chat</a>
-    <a routerLink="/profil" *ngIf="isLogged$ | async">Profil</a>
-    <a routerLink="/admin" *ngIf="(currentUser$ | async)?.role === 'admin'">Admin</a>
+
     <a routerLink="/agenda" *ngIf="isLogged$ | async">Agenda</a>
+    <a routerLink="/reminders" *ngIf="isLogged$ | async">Rappels</a>
+    <a routerLink="/activities" *ngIf="isLogged$ | async">Activités</a>
+    <a routerLink="/profil" *ngIf="isLogged$ | async">Profil</a>
+
+    <a routerLink="/admin" *ngIf="(currentUser$ | async)?.role === 'admin'">
+      Admin
+    </a>
 
     <span class="spacer"></span>
 
@@ -11,7 +17,9 @@
     <button type="button" (click)="switchLang('en')">EN</button>
 
     <a routerLink="/login" *ngIf="!(isLogged$ | async)">Connexion</a>
-    <button type="button" *ngIf="isLogged$ | async" (click)="logout()">Déconnexion</button>
+    <button type="button" *ngIf="isLogged$ | async" (click)="logout()">
+      Déconnexion
+    </button>
   </nav>
 
   <router-outlet></router-outlet>
