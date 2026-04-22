@@ -7,18 +7,23 @@ using Memora.Api.Data;
 namespace Memora.Api.Controllers
 {
     [ApiController]
-    [Authorize] // 👈 protège le chat
+    [Authorize]
     [Route("api/[controller]")]
     public class ChatController : ControllerBase
     {
-
         private readonly MedicalLlmService _medLlm;
         private readonly OpenAiChatService _openai;
         private readonly MessageHistoryService _history;
         private readonly ReminderService _reminderService;
         private readonly DataContext _db;
 
-        public ChatController(MedicalLlmService medLlm, OpenAiChatService openai, MessageHistoryService history, ReminderService reminder, DataContext db) {
+        public ChatController(
+            MedicalLlmService medLlm,
+            OpenAiChatService openai,
+            MessageHistoryService history,
+            ReminderService reminder,
+            DataContext db)
+        {
             _medLlm = medLlm;
             _openai = openai;
             _history = history;
@@ -35,9 +40,9 @@ namespace Memora.Api.Controllers
                 txt.Contains("dose") ||
                 txt.Contains("prise") ||
                 txt.Contains("traitement") ||
-                txt.Contains("ordonnance")   ||
-                txt.Contains("pourquoi") && txt.Contains("médicament") ||
-                txt.Contains("à quoi sert") && txt.Contains("médicament");
+                txt.Contains("ordonnance") ||
+                (txt.Contains("pourquoi") && txt.Contains("médicament")) ||
+                (txt.Contains("à quoi sert") && txt.Contains("médicament"));
         }
 
         [HttpPost]
@@ -46,21 +51,23 @@ namespace Memora.Api.Controllers
             var email = User.FindFirst("email")?.Value;
             var user = _db.Users.FirstOrDefault(u => u.Email == email);
             if (user == null) return Unauthorized();
+
             int userId = user.Id;
 
+            // 🔹 Sauvegarde message utilisateur
             await _history.AddMessageAsync(userId, "user", dto.Message);
 
             string answer;
+
             if (IsMedical(dto.Message))
             {
-                // Option: compose a context if you want ("Here are pending reminders..." etc.)
                 answer = await _medLlm.AskAsync(dto.Message);
             }
             else
             {
                 var messages = await _history.GetLastMessagesAsync(userId, 6);
-                // Option: fetch reminders and add to systemPrompt
-                var reminders = await _reminderService.GetUpcomingRemindersAsync(user.Id);
+
+                var reminders = await _reminderService.GetUpcomingRemindersAsync(userId);
 
                 var remindersText = reminders.Any()
                     ? string.Join(
@@ -70,9 +77,38 @@ namespace Memora.Api.Controllers
                             (string.IsNullOrWhiteSpace(r.Description) ? "" : $" ({r.Description})")))
                     : "Aucun rappel à venir.";
 
-                answer = await _openai.GetChatCompletion(dto.Message, messages, remindersText);
+                // 🔥 PROMPT enrichi (clé A4.1)
+                var systemPrompt = $@"
+Tu es Aline Écoute, un assistant intelligent pour personnes âgées.
+
+Tu es :
+- bienveillant
+- simple
+- rassurant
+- clair
+
+Tu aides avec :
+- organisation
+- rappels
+- activités
+- questions générales
+
+Voici les rappels de l'utilisateur :
+{remindersText}
+
+Si la situation semble urgente, suggère de contacter un proche ou le 911.
+
+Réponds toujours de façon courte, claire et chaleureuse.
+";
+
+                answer = await _openai.GetChatCompletion(
+                    dto.Message,
+                    messages,
+                    systemPrompt
+                );
             }
 
+            // 🔹 Sauvegarde réponse AI
             await _history.AddMessageAsync(userId, "assistant", answer);
 
             return Ok(new ChatResponseDto { Response = answer });

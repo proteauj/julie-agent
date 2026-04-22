@@ -80,19 +80,41 @@ namespace Memora.Api.Services
             chat.Model = isMedical ? _medicalModel : _defaultModel;
 
             // Prompt système, rappels, etc.
-            chat.AppendSystemMessage(systemPrompt ?? (isMedical ? _promptMedical : _promptCompagnon));
+            var basePrompt = systemPrompt ?? (isMedical ? _promptMedical : _promptCompagnon);
+
+            var enrichedPrompt = basePrompt + @"
+            Tu es Aline Écoute, un assistant intelligent pour personnes âgées.
+
+            Tu es :
+            - bienveillant
+            - simple
+            - rassurant
+
+            Tu aides avec :
+            - santé (sans poser de diagnostic)
+            - rappels
+            - organisation quotidienne
+
+            Si une situation semble urgente, suggère de contacter un proche ou le 911.
+
+            Réponds de façon courte, claire et chaleureuse.
+            ";
+
+            chat.AppendSystemMessage(enrichedPrompt);
 
             if (history != null)
             {
                 foreach (var msg in history)
                 {
                     if (msg.Role == "user")
-                        chat.AppendUserInput(msg.Text);
+                        chat.AppendUserInput(msg.Content);
                     else if (msg.Role == "assistant")
-                        chat.AppendExampleChatbotOutput(msg.Text);
+                        chat.AppendExampleChatbotOutput(msg.Content);
                 }
             }
             chat.AppendUserInput(message);
+
+            
 
             var chatResponse = await chat.GetResponseFromChatbotAsync();
             return chatResponse;

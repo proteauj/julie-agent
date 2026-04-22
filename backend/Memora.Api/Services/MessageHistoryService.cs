@@ -15,7 +15,14 @@ namespace Memora.Api.Services
 
         public async Task AddMessageAsync(int userId, string role, string text)
         {
-            var msg = new Message { UserId=userId, Role=role, Text=text, SentAt=DateTime.UtcNow };
+            var msg = new Message
+            {
+                UserId = userId,
+                Role = role,
+                Content = text,            
+                CreatedAt = DateTime.UtcNow 
+            };
+
             _db.Messages.Add(msg);
             await _db.SaveChangesAsync();
         }
@@ -24,9 +31,9 @@ namespace Memora.Api.Services
         {
             return await _db.Messages
                 .Where(m => m.UserId == userId)
-                .OrderByDescending(m => m.SentAt)
+                .OrderByDescending(m => m.CreatedAt) // ✅ FIX
                 .Take(count)
-                .OrderBy(m => m.SentAt)
+                .OrderBy(m => m.CreatedAt)           // ✅ FIX
                 .ToListAsync();
         }
     }
