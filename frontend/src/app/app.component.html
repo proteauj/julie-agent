@@ -3,6 +3,7 @@
     <a routerLink="/chat">Chat</a>
     <a routerLink="/profil" *ngIf="isLogged$ | async">Profil</a>
     <a routerLink="/admin" *ngIf="(currentUser$ | async)?.role === 'admin'">Admin</a>
+    <a routerLink="/agenda" *ngIf="isLogged$ | async">Agenda</a>
 
     <span class="spacer"></span>
 

@@ -1,0 +1,14 @@
+.agenda-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.appointment-row {
+  padding: 0.75rem 0;
+  border-top: 1px solid #eee;
+}
+
+.appointment-row:first-child {
+  border-top: none;
+}

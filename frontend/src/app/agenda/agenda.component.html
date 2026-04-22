@@ -1,0 +1,52 @@
+<div class="agenda-page">
+  <h2>Mon agenda</h2>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Chargement...</p>
+
+  <section class="card">
+    <h3>Ajouter un rendez-vous</h3>
+
+    <div class="grid">
+      <input [(ngModel)]="form.title" placeholder="Titre" />
+      <textarea [(ngModel)]="form.description" placeholder="Description"></textarea>
+
+      <label>
+        Début
+        <input [(ngModel)]="form.start" type="datetime-local" />
+      </label>
+
+      <label>
+        Fin
+        <input [(ngModel)]="form.end" type="datetime-local" />
+      </label>
+
+      <select [(ngModel)]="form.type">
+        <option value="personal">Personnel</option>
+        <option value="medical">Médical</option>
+        <option value="activity">Activité</option>
+      </select>
+    </div>
+
+    <button (click)="createAppointment()" [disabled]="loading">
+      Ajouter
+    </button>
+  </section>
+
+  <section class="card">
+    <h3>Mes rendez-vous</h3>
+
+    <div *ngIf="!loading && appointments.length === 0">
+      Aucun rendez-vous pour le moment.
+    </div>
+
+    <div *ngFor="let appointment of appointments" class="appointment-row">
+      <div>
+        <strong>{{ appointment.title }}</strong><br />
+        <span *ngIf="appointment.description">{{ appointment.description }}</span><br *ngIf="appointment.description" />
+        <span>{{ formatDate(appointment.start) }} → {{ formatDate(appointment.end) }}</span><br />
+        <span>Type : {{ appointment.type || 'Non précisé' }}</span>
+      </div>
+    </div>
+  </section>
+</div>

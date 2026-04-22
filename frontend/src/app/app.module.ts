@@ -10,13 +10,19 @@ import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app.routing';
 import { AppTranslateModule } from './app.translate.module';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { AgendaComponent } from './agenda/agenda.component';
+import { RemindersComponent } from './reminders/reminders.component';
+import { ActivitiesComponent } from './activities/activities.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     ChatComponent,
-    AdminComponent
+    AdminComponent,
+    AgendaComponent,
+    RemindersComponent,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,75 @@
+<div class="reminders-page">
+  <h2>Mes rappels</h2>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Chargement...</p>
+
+  <section class="card">
+    <h3>Ajouter un rappel</h3>
+
+    <div class="grid">
+      <input [(ngModel)]="form.title" placeholder="Titre" />
+      <textarea [(ngModel)]="form.description" placeholder="Description"></textarea>
+
+      <label>
+        Date et heure
+        <input [(ngModel)]="form.scheduledAt" type="datetime-local" />
+      </label>
+
+      <select [(ngModel)]="form.type">
+        <option value="general">Général</option>
+        <option value="medication">Médicament</option>
+        <option value="appointment">Rendez-vous</option>
+        <option value="activity">Activité</option>
+        <option value="meal">Repas</option>
+        <option value="sleep">Dodo</option>
+      </select>
+
+      <select [(ngModel)]="form.channel">
+        <option value="sms">SMS</option>
+        <option value="email">Email</option>
+        <option value="both">Les deux</option>
+      </select>
+
+      <label>
+        <input [(ngModel)]="form.isRecurring" type="checkbox" />
+        Récurrent
+      </label>
+
+      <select *ngIf="form.isRecurring" [(ngModel)]="form.recurrenceRule">
+        <option value="">Choisir une fréquence</option>
+        <option value="daily">Chaque jour</option>
+        <option value="weekly">Chaque semaine</option>
+        <option value="monthly">Chaque mois</option>
+      </select>
+    </div>
+
+    <button (click)="createReminder()" [disabled]="loading">Ajouter</button>
+  </section>
+
+  <section class="card">
+    <h3>Mes rappels enregistrés</h3>
+
+    <div *ngIf="!loading && reminders.length === 0">
+      Aucun rappel pour le moment.
+    </div>
+
+    <div *ngFor="let reminder of reminders" class="reminder-row">
+      <div>
+        <strong>{{ reminder.title }}</strong><br />
+        <span *ngIf="reminder.description">{{ reminder.description }}</span><br *ngIf="reminder.description" />
+        <span>{{ formatDate(reminder.scheduledAt) }}</span><br />
+        <span>Type : {{ reminder.type }}</span><br />
+        <span>Canal : {{ reminder.channel }}</span><br />
+        <span *ngIf="reminder.isRecurring">Récurrence : {{ reminder.recurrenceRule }}</span><br *ngIf="reminder.isRecurring" />
+        <span *ngIf="reminder.isDone">Complété</span>
+      </div>
+
+      <div>
+        <button *ngIf="!reminder.isDone" (click)="markDone(reminder.id)" [disabled]="loading">
+          Compléter
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

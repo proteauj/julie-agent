@@ -1,0 +1,21 @@
+<div class="activities-page">
+  <h2>Activités</h2>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+  <p *ngIf="loading">Chargement...</p>
+
+  <section class="card">
+    <div *ngIf="!loading && activities.length === 0">
+      Aucune activité pour le moment.
+    </div>
+
+    <div *ngFor="let activity of activities" class="activity-row">
+      <div>
+        <strong>{{ activity.name }}</strong><br />
+        <span>{{ activity.description }}</span><br />
+        <span>{{ formatDate(activity.start) }}</span><br />
+        <span>Places : {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}</span>
+      </div>
+    </div>
+  </section>
+</div>
