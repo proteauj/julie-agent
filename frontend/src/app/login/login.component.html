@@ -1,17 +1,17 @@
 <div class="auth-page page">
   <section class="card">
-    <h2>Connexion</h2>
+    <h2>{{ 'LOGIN.TITLE' | translate }}</h2>
 
     <p class="error" *ngIf="error">{{ error }}</p>
 
     <div class="auth-form grid">
-      <input [(ngModel)]="email" type="email" placeholder="Email" />
-      <input [(ngModel)]="password" type="password" placeholder="Mot de passe" />
+      <input [(ngModel)]="email" type="email" [placeholder]="'COMMON.EMAIL' | translate" />
+      <input [(ngModel)]="password" type="password" placeholder="••••••••" />
     </div>
 
     <div class="form-actions">
-      <button (click)="login()">Se connecter</button>
+      <button (click)="login()">{{ 'LOGIN.SUBMIT' | translate }}</button>
+      <a routerLink="/register">{{ 'LOGIN.REGISTER_LINK' | translate }}</a>
     </div>
-    <a routerLink="/register">Créer un compte</a>
   </section>
 </div>
