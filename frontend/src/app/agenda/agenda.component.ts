@@ -22,13 +22,7 @@ export class AgendaComponent implements OnInit {
   loading = false;
   error = '';
 
-  form: {
-    title: string;
-    description: string;
-    start: string;
-    end: string;
-    type: string;
-  } = {
+  form = {
     title: '',
     description: '',
     start: '',
@@ -46,20 +40,18 @@ export class AgendaComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    this.http
-      .get<Appointment[]>(`${environment.apiUrl}/appointments/mine`)
-      .subscribe({
-        next: appointments => {
-          this.appointments = [...appointments].sort(
-            (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
-          );
-          this.loading = false;
-        },
-        error: err => {
-          this.error = err?.error || 'Impossible de charger l’agenda.';
-          this.loading = false;
-        }
-      });
+    this.http.get<Appointment[]>(`${environment.apiUrl}/appointments/mine`).subscribe({
+      next: appointments => {
+        this.appointments = [...appointments].sort(
+          (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+        );
+        this.loading = false;
+      },
+      error: err => {
+        this.error = err?.error || 'Impossible de charger l’agenda.';
+        this.loading = false;
+      }
+    });
   }
 
   createAppointment(): void {
@@ -70,13 +62,8 @@ export class AgendaComponent implements OnInit {
       return;
     }
 
-    if (!this.form.start) {
-      this.error = 'La date de début est requise.';
-      return;
-    }
-
-    if (!this.form.end) {
-      this.error = 'La date de fin est requise.';
+    if (!this.form.start || !this.form.end) {
+      this.error = 'Les dates de début et de fin sont requises.';
       return;
     }
 
@@ -98,24 +85,22 @@ export class AgendaComponent implements OnInit {
       type: this.form.type
     };
 
-    this.http
-      .post<Appointment>(`${environment.apiUrl}/appointments`, payload)
-      .subscribe({
-        next: () => {
-          this.form = {
-            title: '',
-            description: '',
-            start: '',
-            end: '',
-            type: 'personal'
-          };
-          this.loadAppointments();
-        },
-        error: err => {
-          this.error = err?.error || 'Impossible de créer le rendez-vous.';
-          this.loading = false;
-        }
-      });
+    this.http.post<Appointment>(`${environment.apiUrl}/appointments`, payload).subscribe({
+      next: () => {
+        this.form = {
+          title: '',
+          description: '',
+          start: '',
+          end: '',
+          type: 'personal'
+        };
+        this.loadAppointments();
+      },
+      error: err => {
+        this.error = err?.error || 'Impossible de créer le rendez-vous.';
+        this.loading = false;
+      }
+    });
   }
 
   formatDate(value: string): string {

@@ -26,6 +26,11 @@ select {
   background: #fff;
 }
 
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
 button {
   cursor: pointer;
   border: none;
@@ -44,6 +49,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+a {
+  color: #2d6cdf;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .card {
   background: #fff;
   border-radius: 12px;
@@ -55,6 +70,21 @@ button:disabled {
   display: grid;
   gap: 0.75rem;
   margin-bottom: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.list-row {
+  padding: 0.75rem 0;
+  border-top: 1px solid #eee;
+}
+
+.list-row:first-child {
+  border-top: none;
 }
 
 .error {

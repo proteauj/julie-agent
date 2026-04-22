@@ -14,9 +14,6 @@ export interface Reminder {
   completedAt?: string | null;
   isRecurring: boolean;
   recurrenceRule?: string | null;
-  sourceId?: number | null;
-  sourceType?: string | null;
-  createdAt?: string;
 }
 
 @Component({
@@ -49,20 +46,18 @@ export class RemindersComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    this.http
-      .get<Reminder[]>(`${environment.apiUrl}/reminders/mine`)
-      .subscribe({
-        next: reminders => {
-          this.reminders = [...reminders].sort(
-            (a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime()
-          );
-          this.loading = false;
-        },
-        error: err => {
-          this.error = err?.error || 'Impossible de charger les rappels.';
-          this.loading = false;
-        }
-      });
+    this.http.get<Reminder[]>(`${environment.apiUrl}/reminders/mine`).subscribe({
+      next: reminders => {
+        this.reminders = [...reminders].sort(
+          (a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime()
+        );
+        this.loading = false;
+      },
+      error: err => {
+        this.error = err?.error || 'Impossible de charger les rappels.';
+        this.loading = false;
+      }
+    });
   }
 
   createReminder(): void {
@@ -90,41 +85,37 @@ export class RemindersComponent implements OnInit {
       recurrenceRule: this.form.isRecurring ? this.form.recurrenceRule || null : null
     };
 
-    this.http
-      .post(`${environment.apiUrl}/reminders`, payload)
-      .subscribe({
-        next: () => {
-          this.form = {
-            title: '',
-            description: '',
-            scheduledAt: '',
-            type: 'general',
-            channel: 'sms',
-            isRecurring: false,
-            recurrenceRule: ''
-          };
-          this.loadReminders();
-        },
-        error: err => {
-          this.error = err?.error || 'Impossible de créer le rappel.';
-          this.loading = false;
-        }
-      });
+    this.http.post(`${environment.apiUrl}/reminders`, payload).subscribe({
+      next: () => {
+        this.form = {
+          title: '',
+          description: '',
+          scheduledAt: '',
+          type: 'general',
+          channel: 'sms',
+          isRecurring: false,
+          recurrenceRule: ''
+        };
+        this.loadReminders();
+      },
+      error: err => {
+        this.error = err?.error || 'Impossible de créer le rappel.';
+        this.loading = false;
+      }
+    });
   }
 
   markDone(reminderId: number): void {
     this.loading = true;
     this.error = '';
 
-    this.http
-      .post(`${environment.apiUrl}/reminders/${reminderId}/complete`, {})
-      .subscribe({
-        next: () => this.loadReminders(),
-        error: err => {
-          this.error = err?.error || 'Impossible de compléter le rappel.';
-          this.loading = false;
-        }
-      });
+    this.http.post(`${environment.apiUrl}/reminders/${reminderId}/complete`, {}).subscribe({
+      next: () => this.loadReminders(),
+      error: err => {
+        this.error = err?.error || 'Impossible de compléter le rappel.';
+        this.loading = false;
+      }
+    });
   }
 
   formatDate(value: string): string {

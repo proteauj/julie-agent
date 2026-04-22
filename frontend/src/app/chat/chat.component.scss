@@ -1,20 +1,32 @@
-.chat {
-  margin-bottom: 1rem;
-  background: #e8f7fa;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-}
-.chat-input {
+.chat-page {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  flex-direction: column;
+  gap: 1rem;
 }
-input[type="text"], input {
-  flex: 1 1 auto;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
-button {
-  min-width: 90px;
+
+.message {
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  max-width: 80%;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #dbeafe;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: #f3f4f6;
+}
+
+.chat-form {
+  display: grid;
+  gap: 0.75rem;
 }

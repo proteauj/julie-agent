@@ -85,6 +85,11 @@ export class AdminComponent implements OnInit {
   createSenior(): void {
     this.clearMessages();
 
+    if (!this.seniorForm.email.trim() || !this.seniorForm.password.trim()) {
+      this.error = 'Email et mot de passe sont requis.';
+      return;
+    }
+
     this.adminService.createSenior(this.seniorForm).subscribe({
       next: () => {
         this.success = 'Compte sénior créé.';
@@ -103,6 +108,7 @@ export class AdminComponent implements OnInit {
 
   resetPassword(seniorId: number): void {
     const newPassword = this.resetPasswordBySeniorId[seniorId]?.trim();
+
     if (!newPassword) {
       this.error = 'Entre un nouveau mot de passe.';
       return;
@@ -121,6 +127,11 @@ export class AdminComponent implements OnInit {
 
   createActivity(): void {
     this.clearMessages();
+
+    if (!this.activityForm.name.trim() || !this.activityForm.start) {
+      this.error = 'Nom et date de l’activité sont requis.';
+      return;
+    }
 
     this.adminService.createActivity(this.activityForm).subscribe({
       next: () => {
@@ -170,6 +181,11 @@ export class AdminComponent implements OnInit {
 
   createDoctor(): void {
     this.clearMessages();
+
+    if (!this.doctorForm.name.trim() || !this.doctorForm.bookingUrl.trim()) {
+      this.error = 'Nom et URL de prise de rendez-vous sont requis.';
+      return;
+    }
 
     this.adminService.createDoctor(this.doctorForm).subscribe({
       next: () => {
