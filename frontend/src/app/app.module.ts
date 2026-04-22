@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.components';
 import { ChatComponent } from './chat/chat.component';
+import { AdminComponent } from './admin/admin.component';
 import { AppRoutingModule } from './app.routing';
 import { AppTranslateModule } from './app.translate.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    ChatComponent
+    ChatComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -28,4 +30,4 @@ import { JwtInterceptor } from './services/jwt.interceptor';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

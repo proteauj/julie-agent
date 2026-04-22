@@ -1,11 +1,17 @@
-<nav>
-  <a routerLink="/chat" routerLinkActive="active">Chat</a> |
-  <a routerLink="/profil" *ngIf="isLogged$ | async" routerLinkActive="active">Profil</a> |
-  <a (click)="logout()" *ngIf="isLogged$ | async" href="#">Déconnexion</a>
-  <a routerLink="/login" *ngIf="!(isLogged$ | async)">Connexion</a>
-  <span style="float:right">
-    <button (click)="switchLang('fr')">FR</button>
-    <button (click)="switchLang('en')">EN</button>
-  </span>
-</nav>
-<router-outlet></router-outlet>
+<div class="container">
+  <nav class="top-nav">
+    <a routerLink="/chat">Chat</a>
+    <a routerLink="/profil" *ngIf="isLogged$ | async">Profil</a>
+    <a routerLink="/admin" *ngIf="(currentUser$ | async)?.role === 'admin'">Admin</a>
+
+    <span class="spacer"></span>
+
+    <button type="button" (click)="switchLang('fr')">FR</button>
+    <button type="button" (click)="switchLang('en')">EN</button>
+
+    <a routerLink="/login" *ngIf="!(isLogged$ | async)">Connexion</a>
+    <button type="button" *ngIf="isLogged$ | async" (click)="logout()">Déconnexion</button>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>

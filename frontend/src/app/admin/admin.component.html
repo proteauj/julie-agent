@@ -1,0 +1,128 @@
+<div class="admin-page">
+  <h2>Admin résidence</h2>
+
+  <p *ngIf="loading">Chargement...</p>
+  <p class="success" *ngIf="success">{{ success }}</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <section class="card">
+    <h3>Créer un compte sénior</h3>
+
+    <div class="grid">
+      <input [(ngModel)]="seniorForm.nom" placeholder="Nom" />
+      <input [(ngModel)]="seniorForm.email" placeholder="Email" type="email" />
+      <input [(ngModel)]="seniorForm.password" placeholder="Mot de passe temporaire" type="password" />
+      <input [(ngModel)]="seniorForm.phone" placeholder="Téléphone" />
+      <select [(ngModel)]="seniorForm.notificationPreference">
+        <option value="sms">SMS</option>
+        <option value="email">Email</option>
+        <option value="both">Les deux</option>
+      </select>
+    </div>
+
+    <button (click)="createSenior()">Créer le compte</button>
+  </section>
+
+  <section class="card">
+    <h3>Liste des séniors</h3>
+
+    <div *ngFor="let senior of seniors" class="list-row">
+      <div>
+        <strong>{{ senior.nom || 'Sans nom' }}</strong><br />
+        <span>{{ senior.email }}</span><br />
+        <span>{{ senior.phone || 'Aucun téléphone' }}</span>
+      </div>
+
+      <div class="inline-actions">
+        <input
+          [(ngModel)]="resetPasswordBySeniorId[senior.id]"
+          placeholder="Nouveau mot de passe"
+          type="password"
+        />
+        <button (click)="resetPassword(senior.id)">Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Créer une activité</h3>
+
+    <div class="grid">
+      <input [(ngModel)]="activityForm.name" placeholder="Nom de l’activité" />
+      <input [(ngModel)]="activityForm.start" type="datetime-local" />
+      <input [(ngModel)]="activityForm.maxParticipants" type="number" min="1" placeholder="Places max" />
+      <textarea [(ngModel)]="activityForm.description" placeholder="Description"></textarea>
+    </div>
+
+    <button (click)="createActivity()">Créer l’activité</button>
+  </section>
+
+  <section class="card">
+    <h3>Inscrire un sénior à une activité</h3>
+
+    <div class="grid">
+      <select [(ngModel)]="selectedSeniorIdForRegistration">
+        <option [ngValue]="null">Choisir un sénior</option>
+        <option *ngFor="let senior of seniors" [ngValue]="senior.id">
+          {{ senior.nom || senior.email }}
+        </option>
+      </select>
+
+      <select [(ngModel)]="selectedActivityId">
+        <option [ngValue]="null">Choisir une activité</option>
+        <option *ngFor="let activity of activities" [ngValue]="activity.id">
+          {{ activity.name }} ({{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }})
+        </option>
+      </select>
+    </div>
+
+    <button (click)="registerSeniorToActivity()">Inscrire</button>
+  </section>
+
+  <section class="card">
+    <h3>Liste des activités</h3>
+
+    <div *ngFor="let activity of activities" class="list-row">
+      <div>
+        <strong>{{ activity.name }}</strong><br />
+        <span>{{ activity.description }}</span><br />
+        <span>{{ activity.start | date:'medium' }}</span><br />
+        <span>Places: {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}</span>
+      </div>
+
+      <div>
+        <button (click)="deleteActivity(activity.id)">Supprimer</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Ajouter un médecin</h3>
+
+    <div class="grid">
+      <input [(ngModel)]="doctorForm.name" placeholder="Nom" />
+      <input [(ngModel)]="doctorForm.specialty" placeholder="Spécialité" />
+      <input [(ngModel)]="doctorForm.bookingUrl" placeholder="URL de prise de rendez-vous" />
+    </div>
+
+    <button (click)="createDoctor()">Ajouter</button>
+  </section>
+
+  <section class="card">
+    <h3>Liste des médecins</h3>
+
+    <div *ngFor="let doctor of doctors" class="list-row">
+      <div>
+        <strong>{{ doctor.name }}</strong><br />
+        <span>{{ doctor.specialty }}</span><br />
+        <a [href]="doctor.bookingUrl" target="_blank" rel="noopener noreferrer">
+          {{ doctor.bookingUrl }}
+        </a>
+      </div>
+
+      <div>
+        <button (click)="deleteDoctor(doctor.id)">Supprimer</button>
+      </div>
+    </div>
+  </section>
+</div>

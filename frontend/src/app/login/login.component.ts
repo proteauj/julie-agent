@@ -15,8 +15,14 @@ export class LoginComponent {
 
   login() {
     this.auth.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/profil']),
-      error: err => this.error = err.error || 'Erreur de connexion'
+      next: res => {
+        if (res.user.role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/profil']);
+        }
+      },
+      error: err => (this.error = err.error || 'Erreur de connexion')
     });
   }
 }

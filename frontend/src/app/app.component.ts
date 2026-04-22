@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from './services/auth.service';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
+import { AuthService, AuthUser } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,18 @@ import { Observable } from 'rxjs/internal/Observable';
 export class AppComponent {
   title = 'Julie-Agent';
   isLogged$: Observable<boolean>;
+  currentUser$: Observable<AuthUser | null>;
+
   constructor(private translate: TranslateService, private auth: AuthService) {
     this.isLogged$ = this.auth.isLogged$;
+    this.currentUser$ = this.auth.currentUser$;
   }
-  switchLang(lang: string) { this.translate.use(lang); }
-  logout() { this.auth.logout(); }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+
+  logout() {
+    this.auth.logout();
+  }
 }
