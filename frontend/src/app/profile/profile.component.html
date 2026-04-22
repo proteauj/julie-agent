@@ -1,33 +1,69 @@
-<div class="profile" *ngIf="loaded">
-  <h2>{{ 'PROFILE.TITLE' | translate }}</h2>
-  <form (ngSubmit)="save()">
-    <div>
-      <label>{{ 'PROFILE.EMAIL' | translate }} : </label>
-      <input [(ngModel)]="user.email" name="email" required>
-    </div>
-    <div>
-      <label>{{ 'PROFILE.NAME' | translate }} : </label>
-      <input [(ngModel)]="user.nom" name="nom">
-    </div>
-    <div>
-        <label>Téléphone : </label>
-        <input [(ngModel)]="user.phone" name="phone" type="tel">
-    </div>
-    <div>
-        <label>Préférence rappel : </label>
-        <select [(ngModel)]="user.notificationPreference" name="notificationPreference">
-            <option value="sms">SMS</option>
-            <option value="email">Email</option>
+<div class="profile-page page" *ngIf="loaded">
+  <section class="card">
+    <h2>{{ 'PROFILE.TITLE' | translate }}</h2>
+
+    <form class="profile-form grid" (ngSubmit)="save()">
+      <div>
+        <label for="email">{{ 'PROFILE.EMAIL' | translate }} :</label>
+        <input
+          id="email"
+          [(ngModel)]="user.email"
+          name="email"
+          type="email"
+          required
+        />
+      </div>
+
+      <div>
+        <label for="nom">{{ 'PROFILE.NAME' | translate }} :</label>
+        <input
+          id="nom"
+          [(ngModel)]="user.nom"
+          name="nom"
+          type="text"
+        />
+      </div>
+
+      <div>
+        <label for="phone">Téléphone :</label>
+        <input
+          id="phone"
+          [(ngModel)]="user.phone"
+          name="phone"
+          type="tel"
+        />
+      </div>
+
+      <div>
+        <label for="notificationPreference">Préférence rappel :</label>
+        <select
+          id="notificationPreference"
+          [(ngModel)]="user.notificationPreference"
+          name="notificationPreference"
+        >
+          <option value="sms">SMS</option>
+          <option value="email">Email</option>
+          <option value="both">Les deux</option>
         </select>
-    </div>
-    <div>
-      <label>{{ 'PROFILE.LANGUA' | translate }} : </label>
-      <select [(ngModel)]="user.languePreferree" name="langue">
-        <option value="fr">Français</option>
-        <option value="en">English</option>
-      </select>
-    </div>
-    <button>{{ 'CHAT.SEND' | translate }}</button>
-  </form>
-  <div *ngIf="error" style="color:red">{{ error }}</div>
+      </div>
+
+      <div>
+        <label for="langue">{{ 'PROFILE.LANGUA' | translate }} :</label>
+        <select
+          id="langue"
+          [(ngModel)]="user.languePreferree"
+          name="langue"
+        >
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit">{{ 'CHAT.SEND' | translate }}</button>
+      </div>
+    </form>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </section>
 </div>
