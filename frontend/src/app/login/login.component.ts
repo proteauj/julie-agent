@@ -19,7 +19,7 @@ export class LoginComponent {
         if (res.user.role === 'admin') {
           this.router.navigate(['/admin']);
         } else {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/agenda']);
         }
       },
       error: err => (this.error = err.error || 'Erreur de connexion')

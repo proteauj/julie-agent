@@ -6,7 +6,6 @@
     <a routerLink="/reminders" *ngIf="isLogged$ | async">Rappels</a>
     <a routerLink="/activities" *ngIf="isLogged$ | async">Activités</a>
     <a routerLink="/profil" *ngIf="isLogged$ | async">Profil</a>
-
     <a routerLink="/admin" *ngIf="(currentUser$ | async)?.role === 'admin'">
       Admin
     </a>
