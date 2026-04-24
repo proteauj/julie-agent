@@ -154,5 +154,7 @@
 
     "PROFILE": "Profil",
     "PROFILE_DESC": "Mes informations"
-  }
+  },
+  "BACK": "Retour",
+  "HOME": "Accueil"
 }

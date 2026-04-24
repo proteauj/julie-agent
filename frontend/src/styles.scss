@@ -3,6 +3,7 @@ body {
   background: #fafdff;
   font-family: Arial, Helvetica, sans-serif;
   color: #1f2937;
+  font-size: 18px;
 }
 
 * {
@@ -19,6 +20,8 @@ button {
 input,
 textarea,
 select {
+  font-size: 18px;
+  min-height: 44px;
   width: 100%;
   padding: 0.65rem 0.8rem;
   border-radius: 8px;
@@ -51,19 +54,6 @@ button:disabled {
 
 a {
   color: #2d6cdf;
-}
-
-.page {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 10px #00000012;
 }
 
 .grid {
@@ -130,4 +120,33 @@ button {
   border: none;
   background-color: #0ea5a3;
   color: white;
+}
+/* === BOUTONS SÉNIOR === */
+.big-button {
+  width: 100%;
+  min-height: 64px;
+  font-size: 20px;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+/* === PAGE === */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* === CARD === */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 2px 8px #0001;
 }

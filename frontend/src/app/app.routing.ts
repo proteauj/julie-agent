@@ -11,8 +11,6 @@ import { RemindersComponent } from './reminders/reminders.component';
 import { ActivitiesComponent } from './activities/activities.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'chat', pathMatch: 'full' },
-  { path: 'chat', component: ChatComponent },
   { path: 'profil', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
@@ -22,6 +20,8 @@ const routes: Routes = [
   { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'chat' },
   { path: 'home', component: SeniorHomeComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
