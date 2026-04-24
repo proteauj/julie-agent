@@ -42,6 +42,7 @@ export function HttpLoaderFactory() {
     AppRoutingModule,
     AppTranslateModule,
     TranslateModule.forRoot({
+      fallbackLang: 'fr',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
