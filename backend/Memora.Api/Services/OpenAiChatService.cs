@@ -20,7 +20,9 @@ namespace Memora.Api.Services
         public OpenAiChatService(IConfiguration config)
         {
             _config = config;
-            _apiKey = _config["OpenAI:ApiKey"] ?? "";
+            _apiKey = (_config["OpenAI:ApiKey"] ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(_apiKey))
+                throw new InvalidOperationException("Aline n’est pas encore configurée pour répondre. La clé OpenAI est manquante.");
             _defaultModel = _config["OpenAI:Model"] ?? "gpt-4o";
             _medicalModel = _config["OpenAI:MedicalModel"] ?? "gpt-3.5-turbo";
             _promptCompagnon = _config["OpenAI:SystemPromptCompagnon"] ?? "You are a senior-friendly companion.";

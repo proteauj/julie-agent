@@ -22,10 +22,25 @@ namespace Memora.Api.Controllers
         [HttpGet("mine")]
         public IActionResult GetMyAppointments()
         {
-            var user = GetCurrentUser(includeAppointments: true);
+            var user = GetCurrentUser();
             if (user == null) return Unauthorized();
 
-            return Ok(user.Appointments.OrderBy(a => a.Start));
+            var appointments = _context.Appointments
+                .Where(a => a.UserId == user.Id)
+                .OrderBy(a => a.Start)
+                .Select(a => new
+                {
+                    a.Id,
+                    a.Title,
+                    a.Description,
+                    a.Start,
+                    a.End,
+                    a.Type,
+                    a.UserId
+                })
+                .ToList();
+
+            return Ok(appointments);
         }
 
         // POST /api/appointments - création RDV
@@ -42,7 +57,16 @@ namespace Memora.Api.Controllers
             _context.Appointments.Add(model);
             _context.SaveChanges();
 
-            return Ok(model);
+            return Ok(new
+            {
+                model.Id,
+                model.Title,
+                model.Description,
+                model.Start,
+                model.End,
+                model.Type,
+                model.UserId
+            });
         }
 
         // PUT /api/appointments/{id} - modification RDV
