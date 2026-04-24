@@ -36,7 +36,7 @@ export class ActivitiesComponent implements OnInit {
     this.error = '';
     this.success = '';
 
-    this.http.get<any>(`${environment.apiUrl}/admin/activities`).subscribe({
+    this.http.get<any>(`${environment.apiUrl}/activities`).subscribe({
       next: res => {
         const activities = Array.isArray(res)
           ? res
