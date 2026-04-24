@@ -32,6 +32,9 @@ namespace Memora.Api.Controllers
         [HttpPost]
         public IActionResult AddAppointment([FromBody] Appointment model)
         {
+            if (model.End <= model.Start)
+                return BadRequest("La date de fin doit être après la date de début.");
+
             var user = GetCurrentUser();
             if (user == null) return Unauthorized();
 
@@ -68,8 +71,9 @@ namespace Memora.Api.Controllers
         private User? GetCurrentUser(bool includeAppointments = false)
         {
             var email =
-                User.FindFirst(ClaimTypes.Email)?.Value ??
-                User.FindFirst(JwtRegisteredClaimNames.Email)?.Value;
+                User.FindFirst(ClaimTypes.Email)?.Value
+                ?? User.FindFirst("email")?.Value
+                ?? User.FindFirst("sub")?.Value;
 
             if (string.IsNullOrWhiteSpace(email))
                 return null;

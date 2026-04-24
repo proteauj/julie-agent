@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Memora.Api.Models;
 using Memora.Api.Services;
 using Memora.Api.Data;
+using System.Security.Claims;
 
 namespace Memora.Api.Controllers
 {
@@ -48,7 +49,10 @@ namespace Memora.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ChatResponseDto>> Post([FromBody] ChatMessageDto dto)
         {
-            var email = User.FindFirst("email")?.Value;
+            var email =
+                User.FindFirst(ClaimTypes.Email)?.Value
+                ?? User.FindFirst("email")?.Value
+                ?? User.FindFirst("sub")?.Value;
             var user = _db.Users.FirstOrDefault(u => u.Email == email);
             if (user == null) return Unauthorized();
 
@@ -70,12 +74,11 @@ namespace Memora.Api.Controllers
                 var reminders = await _reminderService.GetUpcomingRemindersAsync(userId);
 
                 var remindersText = reminders.Any()
-                    ? string.Join(
-                        "\n",
-                        reminders.Select(r =>
-                            $"- {r.ScheduledAt.ToLocalTime():g}: {r.Title}" +
-                            (string.IsNullOrWhiteSpace(r.Description) ? "" : $" ({r.Description})")))
-                    : "Aucun rappel à venir.";
+                    ? "Rappels à venir de l’utilisateur :\n" +
+                    string.Join("\n", reminders.Select(r =>
+                        $"- {r.ScheduledAt:yyyy-MM-dd HH:mm}: {r.Title}" +
+                        (string.IsNullOrWhiteSpace(r.Description) ? "" : $" ({r.Description})")))
+                    : "";
 
                 // 🔥 PROMPT enrichi (clé A4.1)
                 var systemPrompt = $@"

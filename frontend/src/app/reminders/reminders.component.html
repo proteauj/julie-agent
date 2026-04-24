@@ -77,7 +77,10 @@
           <span>{{ formatDate(reminder.scheduledAt) }}</span>
           <br />
 
-          <span>{{ 'COMMON.TYPE' | translate }} : {{ reminder.type }}</span>
+          <span>
+            {{ 'REMINDERS.CHANNEL' | translate }} :
+            {{ channelLabel(reminder.channel) | translate }}
+          </span></span>
           <br />
 
           <span>{{ 'REMINDERS.CHANNEL' | translate }} : {{ reminder.channel }}</span>

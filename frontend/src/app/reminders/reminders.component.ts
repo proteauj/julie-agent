@@ -124,4 +124,17 @@ export class RemindersComponent implements OnInit {
       timeStyle: 'short'
     });
   }
+
+  channelLabel(channel: string): string {
+    switch (channel) {
+      case 'sms':
+        return 'COMMON.SMS';
+      case 'email':
+        return 'COMMON.EMAIL';
+      case 'both':
+        return 'COMMON.BOTH';
+      default:
+        return 'COMMON.NONE';
+    }
+  }
 }
