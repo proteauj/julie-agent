@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -19,10 +16,6 @@ import { RemindersComponent } from './reminders/reminders.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { SeniorHomeComponent } from './senior-home/senior-home.component';
 
-export function HttpLoaderFactory() {
-  return new TranslateHttpLoader();
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,22 +26,13 @@ export function HttpLoaderFactory() {
     RemindersComponent,
     ActivitiesComponent,
     SeniorHomeComponent
-
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    AppTranslateModule,
-    TranslateModule.forRoot({
-      fallbackLang: 'fr',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    AppTranslateModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

@@ -1,11 +1,19 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function HttpLoaderFactory(): TranslateHttpLoader {
-  return new TranslateHttpLoader();
+export class CustomTranslateLoader implements TranslateLoader {
+  constructor(private http: HttpClient) {}
+
+  getTranslation(lang: string): Observable<any> {
+    return this.http.get(`/assets/i18n/${lang}.json`);
+  }
+}
+
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new CustomTranslateLoader(http);
 }
 
 export function initTranslate(translate: TranslateService) {
@@ -22,10 +30,13 @@ export function initTranslate(translate: TranslateService) {
     HttpClientModule
   ],
   imports: [
+    HttpClientModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     })
   ],
@@ -38,4 +49,4 @@ export function initTranslate(translate: TranslateService) {
     }
   ]
 })
-export class AppTranslateModule { }
+export class AppTranslateModule {}
