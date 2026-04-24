@@ -7,7 +7,9 @@
     "PROFILE": "Profil",
     "ADMIN": "Admin",
     "LOGIN": "Connexion",
-    "LOGOUT": "Déconnexion"
+    "LOGOUT": "Déconnexion",
+    "BACK": "Retour",
+    "HOME": "Accueil"
   },
 
   "COMMON": {
@@ -154,7 +156,5 @@
 
     "PROFILE": "Profil",
     "PROFILE_DESC": "Mes informations"
-  },
-  "BACK": "Retour",
-  "HOME": "Accueil"
+  }
 }

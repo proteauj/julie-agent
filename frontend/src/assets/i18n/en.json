@@ -7,7 +7,9 @@
     "PROFILE": "Profile",
     "ADMIN": "Admin",
     "LOGIN": "Login",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "BACK": "Back",
+    "HOME": "Home"
   },
 
   "COMMON": {
@@ -153,7 +155,5 @@
 
     "PROFILE": "Profile",
     "PROFILE_DESC": "My information"
-  },
-  "BACK": "Back",
-  "HOME": "Home"
+  }
 }
