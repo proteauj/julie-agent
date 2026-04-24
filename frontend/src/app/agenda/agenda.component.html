@@ -1,74 +1,76 @@
 <div class="agenda-page page">
-  <h2>{{ 'AGENDA.TITLE' | translate }}</h2>
-
-  <p class="error" *ngIf="error">{{ error }}</p>
-
   <section class="card">
-    <h3>{{ 'AGENDA.ADD_APPOINTMENT' | translate }}</h3>
+    <h2>{{ 'AGENDA.TITLE' | translate }}</h2>
 
-    <div class="grid">
-      <input
-        [(ngModel)]="form.title"
-        [placeholder]="'COMMON.TITLE' | translate"
-      />
+    <p class="error" *ngIf="error">{{ error }}</p>
 
-      <textarea
-        [(ngModel)]="form.description"
-        [placeholder]="'COMMON.DESCRIPTION' | translate"
-      ></textarea>
+    <section class="card">
+      <h3>{{ 'AGENDA.ADD_APPOINTMENT' | translate }}</h3>
 
-      <label>
-        {{ 'COMMON.START' | translate }}
-        <input [(ngModel)]="form.start" type="datetime-local" />
-      </label>
+      <div class="grid">
+        <input
+          [(ngModel)]="form.title"
+          [placeholder]="'COMMON.TITLE' | translate"
+        />
 
-      <label>
-        {{ 'COMMON.END' | translate }}
-        <input [(ngModel)]="form.end" type="datetime-local" />
-      </label>
+        <textarea
+          [(ngModel)]="form.description"
+          [placeholder]="'COMMON.DESCRIPTION' | translate"
+        ></textarea>
 
-      <select [(ngModel)]="form.type">
-        <option value="personal">{{ 'AGENDA.PERSONAL' | translate }}</option>
-        <option value="medical">{{ 'AGENDA.MEDICAL' | translate }}</option>
-        <option value="activity">{{ 'AGENDA.ACTIVITY' | translate }}</option>
-      </select>
-    </div>
+        <label>
+          {{ 'COMMON.START' | translate }}
+          <input [(ngModel)]="form.start" type="datetime-local" />
+        </label>
 
-    <div class="form-actions">
-      <button (click)="createAppointment()" [disabled]="loading">
-        {{ 'COMMON.ADD' | translate }}
-      </button>
-    </div>
-  </section>
+        <label>
+          {{ 'COMMON.END' | translate }}
+          <input [(ngModel)]="form.end" type="datetime-local" />
+        </label>
 
-  <section class="card">
-    <h3>{{ 'AGENDA.MY_APPOINTMENTS' | translate }}</h3>
-
-    <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
-
-    <div *ngIf="!loading && appointments.length === 0">
-      {{ 'AGENDA.NO_APPOINTMENTS' | translate }}
-    </div>
-
-    <div *ngFor="let appointment of appointments" class="appointment-row list-row">
-      <div>
-        <strong>{{ appointment.title }}</strong><br />
-
-        <span *ngIf="appointment.description">
-          {{ appointment.description }}
-        </span>
-        <br *ngIf="appointment.description" />
-
-        <span>
-          {{ formatDate(appointment.start) }} → {{ formatDate(appointment.end) }}
-        </span>
-        <br />
-
-        <span>
-          {{ 'COMMON.TYPE' | translate }} :
-          {{ appointment.type || ('AGENDA.TYPE_UNSPECIFIED' | translate) }}
-        </span>
+        <select [(ngModel)]="form.type">
+          <option value="personal">{{ 'AGENDA.PERSONAL' | translate }}</option>
+          <option value="medical">{{ 'AGENDA.MEDICAL' | translate }}</option>
+          <option value="activity">{{ 'AGENDA.ACTIVITY' | translate }}</option>
+        </select>
       </div>
-    </div>
+
+      <div class="form-actions">
+        <button (click)="createAppointment()" [disabled]="loading">
+          {{ 'COMMON.ADD' | translate }}
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>{{ 'AGENDA.MY_APPOINTMENTS' | translate }}</h3>
+
+      <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
+
+      <div *ngIf="!loading && appointments.length === 0">
+        {{ 'AGENDA.NO_APPOINTMENTS' | translate }}
+      </div>
+
+      <div *ngFor="let appointment of appointments" class="appointment-row list-row">
+        <div>
+          <strong>{{ appointment.title }}</strong><br />
+
+          <span *ngIf="appointment.description">
+            {{ appointment.description }}
+          </span>
+          <br *ngIf="appointment.description" />
+
+          <span>
+            {{ formatDate(appointment.start) }} → {{ formatDate(appointment.end) }}
+          </span>
+          <br />
+
+          <span>
+            {{ 'COMMON.TYPE' | translate }} :
+            {{ appointment.type || ('AGENDA.TYPE_UNSPECIFIED' | translate) }}
+          </span>
+        </div>
+      </div>
+    </section>
   </section>
 </div>

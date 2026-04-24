@@ -1,104 +1,106 @@
 <div class="reminders-page page">
-  <h2>{{ 'REMINDERS.TITLE' | translate }}</h2>
-
-  <p class="error" *ngIf="error">{{ error }}</p>
-
   <section class="card">
-    <h3>{{ 'REMINDERS.ADD_REMINDER' | translate }}</h3>
+    <h2>{{ 'REMINDERS.TITLE' | translate }}</h2>
 
-    <div class="grid">
-      <input
-        [(ngModel)]="form.title"
-        [placeholder]="'COMMON.TITLE' | translate"
-      />
+    <p class="error" *ngIf="error">{{ error }}</p>
 
-      <textarea
-        [(ngModel)]="form.description"
-        [placeholder]="'COMMON.DESCRIPTION' | translate"
-      ></textarea>
+    <section class="card">
+      <h3>{{ 'REMINDERS.ADD_REMINDER' | translate }}</h3>
 
-      <label>
-        {{ 'REMINDERS.DATE_TIME' | translate }}
-        <input [(ngModel)]="form.scheduledAt" type="datetime-local" />
-      </label>
+      <div class="grid">
+        <input
+          [(ngModel)]="form.title"
+          [placeholder]="'COMMON.TITLE' | translate"
+        />
 
-      <select [(ngModel)]="form.type">
-        <option value="general">{{ 'REMINDERS.GENERAL' | translate }}</option>
-        <option value="medication">{{ 'REMINDERS.MEDICATION' | translate }}</option>
-        <option value="appointment">{{ 'REMINDERS.APPOINTMENT' | translate }}</option>
-        <option value="activity">{{ 'REMINDERS.ACTIVITY' | translate }}</option>
-        <option value="meal">{{ 'REMINDERS.MEAL' | translate }}</option>
-        <option value="sleep">{{ 'REMINDERS.SLEEP' | translate }}</option>
-      </select>
+        <textarea
+          [(ngModel)]="form.description"
+          [placeholder]="'COMMON.DESCRIPTION' | translate"
+        ></textarea>
 
-      <select [(ngModel)]="form.channel">
-        <option value="sms">{{ 'COMMON.SMS' | translate }}</option>
-        <option value="email">{{ 'COMMON.EMAIL' | translate }}</option>
-        <option value="both">{{ 'COMMON.BOTH' | translate }}</option>
-      </select>
+        <label>
+          {{ 'REMINDERS.DATE_TIME' | translate }}
+          <input [(ngModel)]="form.scheduledAt" type="datetime-local" />
+        </label>
 
-      <label>
-        <input [(ngModel)]="form.isRecurring" type="checkbox" />
-        {{ 'REMINDERS.RECURRING' | translate }}
-      </label>
+        <select [(ngModel)]="form.type">
+          <option value="general">{{ 'REMINDERS.GENERAL' | translate }}</option>
+          <option value="medication">{{ 'REMINDERS.MEDICATION' | translate }}</option>
+          <option value="appointment">{{ 'REMINDERS.APPOINTMENT' | translate }}</option>
+          <option value="activity">{{ 'REMINDERS.ACTIVITY' | translate }}</option>
+          <option value="meal">{{ 'REMINDERS.MEAL' | translate }}</option>
+          <option value="sleep">{{ 'REMINDERS.SLEEP' | translate }}</option>
+        </select>
 
-      <select *ngIf="form.isRecurring" [(ngModel)]="form.recurrenceRule">
-        <option value="">{{ 'REMINDERS.CHOOSE_FREQUENCY' | translate }}</option>
-        <option value="daily">{{ 'REMINDERS.DAILY' | translate }}</option>
-        <option value="weekly">{{ 'REMINDERS.WEEKLY' | translate }}</option>
-        <option value="monthly">{{ 'REMINDERS.MONTHLY' | translate }}</option>
-      </select>
-    </div>
+        <select [(ngModel)]="form.channel">
+          <option value="sms">{{ 'COMMON.SMS' | translate }}</option>
+          <option value="email">{{ 'COMMON.EMAIL' | translate }}</option>
+          <option value="both">{{ 'COMMON.BOTH' | translate }}</option>
+        </select>
 
-    <div class="form-actions">
-      <button (click)="createReminder()" [disabled]="loading">
-        {{ 'COMMON.ADD' | translate }}
-      </button>
-    </div>
-  </section>
+        <label>
+          <input [(ngModel)]="form.isRecurring" type="checkbox" />
+          {{ 'REMINDERS.RECURRING' | translate }}
+        </label>
 
-  <section class="card">
-    <h3>{{ 'REMINDERS.MY_REMINDERS' | translate }}</h3>
-
-    <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
-
-    <div *ngIf="!loading && reminders.length === 0">
-      {{ 'REMINDERS.NO_REMINDERS' | translate }}
-    </div>
-
-    <div *ngFor="let reminder of reminders" class="reminder-row list-row">
-      <div>
-        <strong>{{ reminder.title }}</strong><br />
-
-        <span *ngIf="reminder.description">{{ reminder.description }}</span>
-        <br *ngIf="reminder.description" />
-
-        <span>{{ formatDate(reminder.scheduledAt) }}</span>
-        <br />
-
-        <span>{{ 'COMMON.TYPE' | translate }} : {{ reminder.type }}</span>
-        <br />
-
-        <span>{{ 'REMINDERS.CHANNEL' | translate }} : {{ reminder.channel }}</span>
-        <br />
-
-        <span *ngIf="reminder.isRecurring">
-          {{ 'REMINDERS.RECURRENCE' | translate }} : {{ reminder.recurrenceRule }}
-        </span>
-        <br *ngIf="reminder.isRecurring" />
-
-        <span *ngIf="reminder.isDone">{{ 'REMINDERS.COMPLETED' | translate }}</span>
+        <select *ngIf="form.isRecurring" [(ngModel)]="form.recurrenceRule">
+          <option value="">{{ 'REMINDERS.CHOOSE_FREQUENCY' | translate }}</option>
+          <option value="daily">{{ 'REMINDERS.DAILY' | translate }}</option>
+          <option value="weekly">{{ 'REMINDERS.WEEKLY' | translate }}</option>
+          <option value="monthly">{{ 'REMINDERS.MONTHLY' | translate }}</option>
+        </select>
       </div>
 
       <div class="form-actions">
-        <button
-          *ngIf="!reminder.isDone"
-          (click)="markDone(reminder.id)"
-          [disabled]="loading"
-        >
-          {{ 'REMINDERS.COMPLETE' | translate }}
+        <button (click)="createReminder()" [disabled]="loading">
+          {{ 'COMMON.ADD' | translate }}
         </button>
       </div>
-    </div>
+    </section>
+
+    <section class="card">
+      <h3>{{ 'REMINDERS.MY_REMINDERS' | translate }}</h3>
+
+      <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
+
+      <div *ngIf="!loading && reminders.length === 0">
+        {{ 'REMINDERS.NO_REMINDERS' | translate }}
+      </div>
+
+      <div *ngFor="let reminder of reminders" class="reminder-row list-row">
+        <div>
+          <strong>{{ reminder.title }}</strong><br />
+
+          <span *ngIf="reminder.description">{{ reminder.description }}</span>
+          <br *ngIf="reminder.description" />
+
+          <span>{{ formatDate(reminder.scheduledAt) }}</span>
+          <br />
+
+          <span>{{ 'COMMON.TYPE' | translate }} : {{ reminder.type }}</span>
+          <br />
+
+          <span>{{ 'REMINDERS.CHANNEL' | translate }} : {{ reminder.channel }}</span>
+          <br />
+
+          <span *ngIf="reminder.isRecurring">
+            {{ 'REMINDERS.RECURRENCE' | translate }} : {{ reminder.recurrenceRule }}
+          </span>
+          <br *ngIf="reminder.isRecurring" />
+
+          <span *ngIf="reminder.isDone">{{ 'REMINDERS.COMPLETED' | translate }}</span>
+        </div>
+
+        <div class="form-actions">
+          <button
+            *ngIf="!reminder.isDone"
+            (click)="markDone(reminder.id)"
+            [disabled]="loading"
+          >
+            {{ 'REMINDERS.COMPLETE' | translate }}
+          </button>
+        </div>
+      </div>
+    </section>
   </section>
 </div>

@@ -1,49 +1,51 @@
 <div class="activities-page page">
-  <h2>{{ 'ACTIVITIES.TITLE' | translate }}</h2>
-
-  <p class="error" *ngIf="error">{{ error }}</p>
-  <p class="success" *ngIf="success">{{ success }}</p>
-
   <section class="card">
-    <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
+    <h2>{{ 'ACTIVITIES.TITLE' | translate }}</h2>
 
-    <div *ngIf="!loading && activities.length === 0">
-      {{ 'ACTIVITIES.NO_ACTIVITIES' | translate }}
-    </div>
+    <p class="error" *ngIf="error">{{ error }}</p>
+    <p class="success" *ngIf="success">{{ success }}</p>
 
-    <div *ngFor="let activity of activities" class="activity-row list-row">
-      <div>
-        <strong>{{ activity.name }}</strong><br />
+    <section class="card">
+      <p *ngIf="loading">{{ 'COMMON.LOADING' | translate }}</p>
 
-        <span *ngIf="activity.description">{{ activity.description }}</span>
-        <br *ngIf="activity.description" />
-
-        <span>{{ formatDate(activity.start) }}</span>
-        <br />
-
-        <span>
-          {{ 'ACTIVITIES.PLACES' | translate }} :
-          {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}
-        </span>
+      <div *ngIf="!loading && activities.length === 0">
+        {{ 'ACTIVITIES.NO_ACTIVITIES' | translate }}
       </div>
 
-      <div class="form-actions" *ngIf="activity.canRegister !== false">
-        <button
-          *ngIf="activity.isRegistered !== true"
-          (click)="registerToActivity(activity)"
-          [disabled]="loading"
-        >
-          {{ 'ACTIVITIES.REGISTER' | translate }}
-        </button>
+      <div *ngFor="let activity of activities" class="activity-row list-row">
+        <div>
+          <strong>{{ activity.name }}</strong><br />
 
-        <button
-          *ngIf="activity.isRegistered === true"
-          (click)="unregisterFromActivity(activity)"
-          [disabled]="loading"
-        >
-          {{ 'ACTIVITIES.UNREGISTER' | translate }}
-        </button>
+          <span *ngIf="activity.description">{{ activity.description }}</span>
+          <br *ngIf="activity.description" />
+
+          <span>{{ formatDate(activity.start) }}</span>
+          <br />
+
+          <span>
+            {{ 'ACTIVITIES.PLACES' | translate }} :
+            {{ activity.registeredCount || 0 }}/{{ activity.maxParticipants }}
+          </span>
+        </div>
+
+        <div class="form-actions" *ngIf="activity.canRegister !== false">
+          <button
+            *ngIf="activity.isRegistered !== true"
+            (click)="registerToActivity(activity)"
+            [disabled]="loading"
+          >
+            {{ 'ACTIVITIES.REGISTER' | translate }}
+          </button>
+
+          <button
+            *ngIf="activity.isRegistered === true"
+            (click)="unregisterFromActivity(activity)"
+            [disabled]="loading"
+          >
+            {{ 'ACTIVITIES.UNREGISTER' | translate }}
+          </button>
+        </div>
       </div>
-    </div>
+    </section>
   </section>
 </div>
