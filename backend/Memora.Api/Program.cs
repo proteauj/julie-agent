@@ -68,6 +68,12 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<DataContext>();
     db.Database.Migrate();
+    var seedDemoData = Environment.GetEnvironmentVariable("SEED_DEMO_DATA");
+
+    if (seedDemoData == "true")
+    {
+        await DemoDataSeeder.SeedAsync(db);
+    }
 }
 
 app.UseAuthentication();
