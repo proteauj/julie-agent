@@ -128,12 +128,30 @@
     "COMPLETED": "Completed",
     "COMPLETE": "Complete"
   },
-
   "ACTIVITIES": {
     "TITLE": "Activities",
     "NO_ACTIVITIES": "No activities for now.",
     "PLACES": "Spots",
     "REGISTER": "Register",
     "UNREGISTER": "Unregister"
+  },
+  "HOME": {
+    "WELCOME": "Hello",
+    "QUESTION": "What would you like to do today?",
+
+    "CHAT": "Talk to Aline",
+    "CHAT_DESC": "Ask for help or chat",
+
+    "AGENDA": "Agenda",
+    "AGENDA_DESC": "View my appointments",
+
+    "REMINDERS": "Reminders",
+    "REMINDERS_DESC": "Medications and activities",
+
+    "ACTIVITIES": "Activities",
+    "ACTIVITIES_DESC": "View available activities",
+
+    "PROFILE": "Profile",
+    "PROFILE_DESC": "My information"
   }
 }

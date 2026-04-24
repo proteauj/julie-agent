@@ -1,6 +1,6 @@
 <div class="chat-page page">
   <section class="card">
-    <h2>Parler à l’agent</h2>
+    <h2>{{ 'CHAT.TITLE' | translate }}</h2>
 
     <div class="messages">
       <div
@@ -8,7 +8,17 @@
         class="message"
         [ngClass]="message.role"
       >
-        {{ message.content }}
+        <strong>
+          {{ message.role === 'user' ? 'Moi' : 'Aline' }} :
+        </strong>
+        <div class="content">
+          {{ message.content }}
+        </div>
+      </div>
+
+      <!-- 🔄 loading -->
+      <div *ngIf="loading" class="message assistant">
+        <em>...</em>
       </div>
     </div>
   </section>
@@ -17,12 +27,16 @@
     <div class="chat-form">
       <textarea
         [(ngModel)]="input"
-        placeholder="Écris ton message..."
+        [placeholder]="'CHAT.PLACEHOLDER' | translate"
+        rows="3"
       ></textarea>
 
       <div class="form-actions">
-        <button (click)="send()" [disabled]="loading || !input.trim()">
-          Envoyer
+        <button
+          (click)="send()"
+          [disabled]="loading || !input.trim()"
+        >
+          {{ 'CHAT.SEND' | translate }}
         </button>
       </div>
     </div>

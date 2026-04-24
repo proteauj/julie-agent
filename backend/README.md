@@ -1,6 +1,6 @@
-# Julie-Agent Backend (.NET)
+# Aline Écoute Backend (.NET)
 
-Ce dossier contient l’API backend du projet Julie-Agent sous .NET, connectée à une base PostgreSQL (Neon).
+Ce dossier contient l’API backend du projet Aline Écoute sous .NET, connectée à une base PostgreSQL (Neon).
 
 ## Lancement local
 

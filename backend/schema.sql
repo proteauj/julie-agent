@@ -1,4 +1,4 @@
--- Schéma user minimal pour Julie-Agent
+-- Schéma user minimal pour Aline Écoute
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,

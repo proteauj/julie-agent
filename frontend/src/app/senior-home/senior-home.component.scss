@@ -1,10 +1,49 @@
-.senior-home {
+.senior-home-page {
+  gap: 1.5rem;
+}
+
+.senior-welcome {
+  text-align: center;
+}
+
+.senior-welcome h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.senior-welcome p {
+  margin: 0.75rem 0 0;
+  font-size: 1.3rem;
+}
+
+.senior-menu {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
-button {
-  font-size: 1.5rem;
-  padding: 1.5rem;
-  border-radius: 16px;
+.senior-menu-button {
+  min-height: 150px;
+  padding: 1.25rem;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.senior-menu-icon {
+  font-size: 2.5rem;
+}
+
+.senior-menu-label {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.senior-menu-description {
+  font-size: 1rem;
+  opacity: 0.9;
 }

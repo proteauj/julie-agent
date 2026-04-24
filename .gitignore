@@ -27,3 +27,6 @@ frontend/src/environments/environment*.ts
 
 
 /.env
+# Angular cache
+frontend/.angular/
+.angular/

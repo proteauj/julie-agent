@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ChatService } from '../services/chat.service';
+import { ChatMessage } from '../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -7,7 +8,7 @@ import { ChatService } from '../services/chat.service';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent {
-  messages: { author: string, text: string }[] = [];
+  messages: ChatMessage[] = [];
   input = '';
   loading = false;
 
@@ -17,19 +18,33 @@ export class ChatComponent {
     const msg = this.input.trim();
     if (!msg) return;
 
-    this.messages.push({ author: 'Vous', text: msg });
+    this.messages.push({
+      role: 'user',
+      content: msg
+    });
     this.input = '';
     this.loading = true;
 
     this.chat.sendMessage(msg).subscribe({
       next: res => {
-        this.messages.push({ author: 'Julie', text: res.response });
+        this.messages.push({
+          role: 'assistant',
+          content: res.response
+        });
         this.loading = false;
       },
       error: _ => {
-        this.messages.push({ author: 'SYSTEM', text: "Erreur : échec communication API." });
+        this.messages.push({
+          role: 'assistant',
+          content: "Erreur : échec communication API."
+        });
         this.loading = false;
       }
     });
+  }
+
+  ngAfterViewChecked() {
+    const el = document.querySelector('.messages');
+    if (el) el.scrollTop = el.scrollHeight;
   }
 }

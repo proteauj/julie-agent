@@ -17,6 +17,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { ActivitiesComponent } from './activities/activities.component';
+import { SeniorHomeComponent } from './senior-home/senior-home.component';
 
 export function HttpLoaderFactory() {
   return new TranslateHttpLoader();
@@ -30,7 +31,9 @@ export function HttpLoaderFactory() {
     AdminComponent,
     AgendaComponent,
     RemindersComponent,
-    ActivitiesComponent
+    ActivitiesComponent,
+    SeniorHomeComponent
+
   ],
   imports: [
     BrowserModule,

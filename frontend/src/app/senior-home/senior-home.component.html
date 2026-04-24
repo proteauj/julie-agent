@@ -1,6 +1,19 @@
-<div class="senior-home">
-  <button routerLink="/agenda">Mon horaire</button>
-  <button routerLink="/reminders">Mes rappels</button>
-  <button routerLink="/chat">Parler à l’agent</button>
-  <button routerLink="/activities">Activités</button>
+<div class="senior-home-page page">
+  <section class="card senior-welcome">
+    <h1>{{ 'HOME.WELCOME' | translate }}</h1>
+    <p>{{ 'HOME.QUESTION' | translate }}</p>
+  </section>
+
+  <section class="senior-menu">
+    <button
+      *ngFor="let item of items"
+      class="senior-menu-button"
+      [routerLink]="item.route"
+      type="button"
+    >
+      <span class="senior-menu-icon">{{ item.icon }}</span>
+      <span class="senior-menu-label">{{ item.label }}</span>
+      <span class="senior-menu-description">{{ item.description }}</span>
+    </button>
+  </section>
 </div>

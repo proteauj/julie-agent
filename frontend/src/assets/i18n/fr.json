@@ -135,5 +135,24 @@
     "PLACES": "Places",
     "REGISTER": "M’inscrire",
     "UNREGISTER": "Me désinscrire"
+  },
+  "HOME": {
+    "WELCOME": "Bonjour",
+    "QUESTION": "Que voulez-vous faire aujourd’hui ?",
+
+    "CHAT": "Parler à Aline",
+    "CHAT_DESC": "Discuter ou demander de l’aide",
+
+    "AGENDA": "Agenda",
+    "AGENDA_DESC": "Voir mes rendez-vous",
+
+    "REMINDERS": "Rappels",
+    "REMINDERS_DESC": "Médicaments et activités",
+
+    "ACTIVITIES": "Activités",
+    "ACTIVITIES_DESC": "Voir les activités",
+
+    "PROFILE": "Profil",
+    "PROFILE_DESC": "Mes informations"
   }
 }

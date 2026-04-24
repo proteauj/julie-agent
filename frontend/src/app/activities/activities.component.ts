@@ -21,7 +21,7 @@ export class ActivitiesComponent implements OnInit {
   activities: ActivityItem[] = [];
   loading = false;
   error = '';
-  success: string | null = null;
+  success: string | null = null!;
 
   constructor(private http: HttpClient) {}
 

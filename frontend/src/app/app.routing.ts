@@ -17,11 +17,11 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
   { path: 'register', loadComponent: () => import('./register/register.component').then(m => m.RegisterComponent) },
-  { path: 'home', component: SeniorHomeComponent },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'reminders', component: RemindersComponent, canActivate: [AuthGuard] },
   { path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'chat' }
+  { path: '**', redirectTo: 'chat' },
+  { path: 'home', component: SeniorHomeComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

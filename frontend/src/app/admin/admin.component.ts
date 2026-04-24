@@ -39,8 +39,8 @@ export class AdminComponent implements OnInit {
     maxParticipants: 10
   };
 
-  selectedActivityId: number | null = null;
-  selectedSeniorIdForRegistration: number | null = null;
+  selectedActivityId: number | null = null!;
+  selectedSeniorIdForRegistration: number | null = null!;
 
   doctorForm: DoctorItem = {
     name: '',

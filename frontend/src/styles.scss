@@ -94,3 +94,40 @@ a {
 .success {
   color: #067647;
 }
+
+/* styles.scss */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 16px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0ea5a3;
+  color: white;
+}
