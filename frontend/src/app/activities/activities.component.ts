@@ -54,15 +54,9 @@ export class ActivitiesComponent implements OnInit {
         this.loading = false;
       },
       error: err => {
-        this.error =
-          typeof err?.error === 'string'
-            ? err.error
-            : err?.error?.message
-              ? err.error.message
-              : 'Impossible de charger les activités.';
-
-        this.loading = false;
-      }
+          this.error = this.getErrorMessage(err, 'Impossible de charger les activités.');
+          this.loading = false;
+        }
     });
   }
 
@@ -79,10 +73,7 @@ export class ActivitiesComponent implements OnInit {
           this.loadActivities();
         },
         error: err => {
-          this.error =
-            typeof err?.error === 'string'
-              ? err.error
-              : 'Impossible de vous inscrire à cette activité.';
+          this.error = this.getErrorMessage(err, 'Impossible de vous inscrire à cette activité.');
           this.loading = false;
         }
       });
@@ -101,10 +92,7 @@ export class ActivitiesComponent implements OnInit {
           this.loadActivities();
         },
         error: err => {
-          this.error =
-            typeof err?.error === 'string'
-              ? err.error
-              : 'Impossible de vous désinscrire de cette activité.';
+          this.error = this.getErrorMessage(err, 'Impossible de vous désinscrire de cette activité.');
           this.loading = false;
         }
       });
@@ -126,5 +114,21 @@ export class ActivitiesComponent implements OnInit {
       dateStyle: 'medium',
       timeStyle: 'short'
     });
+  }
+
+  private getErrorMessage(err: any, fallback: string): string {
+    if (typeof err?.error === 'string') {
+      return err.error;
+    }
+
+    if (typeof err?.error?.message === 'string') {
+      return err.error.message;
+    }
+
+    if (typeof err?.message === 'string') {
+      return err.message;
+    }
+
+    return fallback;
   }
 }
