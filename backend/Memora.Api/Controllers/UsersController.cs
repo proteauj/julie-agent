@@ -36,18 +36,31 @@ namespace Memora.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, User user)
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UpdateProfileDto dto)
         {
-            if (id != user.Id) return BadRequest();
-            var dbUser = await _context.Users.FindAsync(id);
-            if (dbUser == null) return NotFound();
-            dbUser.Email = user.Email;
-            dbUser.Nom = user.Nom;
-            dbUser.LanguePreferree = user.LanguePreferree;
-            dbUser.Phone = user.Phone;
-            dbUser.NotificationPreference = user.NotificationPreference;
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) return NotFound();
+
+            user.Nom = dto.Nom;
+            user.Phone = dto.Phone;
+            user.LanguePreferree = dto.LanguePreferree;
+            user.NotificationPreference = dto.NotificationPreference;
+            user.FavoriteDoctorId = dto.FavoriteDoctorId;
+
             await _context.SaveChangesAsync();
-            return NoContent();
+
+            return Ok(new
+            {
+                user.Id,
+                user.Email,
+                user.Nom,
+                user.Role,
+                user.Phone,
+                user.LanguePreferree,
+                user.NotificationPreference,
+                user.FacilityId,
+                user.FavoriteDoctorId
+            });
         }
 
         [Authorize]
