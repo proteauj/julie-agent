@@ -45,27 +45,39 @@ namespace Memora.Api.Controllers
 
         // POST /api/appointments - création RDV
         [HttpPost]
-        public IActionResult AddAppointment([FromBody] Appointment model)
+        public IActionResult AddAppointment([FromBody] AppointmentDto dto)
         {
-            if (model.End <= model.Start)
+            if (dto.Start == default)
+                return BadRequest("La date de début est obligatoire.");
+
+            if (dto.End.HasValue && dto.End <= dto.Start)
                 return BadRequest("La date de fin doit être après la date de début.");
 
             var user = GetCurrentUser();
             if (user == null) return Unauthorized();
 
-            model.UserId = user.Id;
-            _context.Appointments.Add(model);
+            var appointment = new Appointment
+            {
+                UserId = user.Id,
+                Title = dto.Title,
+                Description = dto.Description ?? "",
+                Start = dto.Start,
+                End = dto.End,
+                Type = dto.Type
+            };
+
+            _context.Appointments.Add(appointment);
             _context.SaveChanges();
 
             return Ok(new
             {
-                model.Id,
-                model.Title,
-                model.Description,
-                model.Start,
-                model.End,
-                model.Type,
-                model.UserId
+                appointment.Id,
+                appointment.Title,
+                appointment.Description,
+                appointment.Start,
+                appointment.End,
+                appointment.Type,
+                appointment.UserId
             });
         }
 
