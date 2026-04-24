@@ -1,35 +1,26 @@
 <div class="container">
-
-  <!-- HEADER SÉNIOR -->
   <header class="senior-header">
-
-    <!-- Retour -->
     <button type="button" class="header-button" (click)="goBack()">
       ← {{ 'NAV.BACK' | translate }}
     </button>
 
-    <!-- Accueil -->
     <a routerLink="/home" class="header-home">
       🏠 {{ 'NAV.HOME' | translate }}
     </a>
 
     <span class="spacer"></span>
 
-    <!-- Langue -->
-    <button type="button" (click)="switchLang('fr')" class="lang-button">FR</button>
-    <button type="button" (click)="switchLang('en')" class="lang-button">EN</button>
+    <button type="button" class="lang-button" (click)="switchLang('fr')">FR</button>
+    <button type="button" class="lang-button" (click)="switchLang('en')">EN</button>
 
-    <!-- Auth -->
-    <a routerLink="/login" *ngIf="!(isLogged$ | async)">
+    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="header-link">
       {{ 'NAV.LOGIN' | translate }}
     </a>
 
-    <button type="button" *ngIf="isLogged$ | async" (click)="logout()">
+    <button type="button" *ngIf="isLogged$ | async" class="header-button" (click)="logout()">
       {{ 'NAV.LOGOUT' | translate }}
     </button>
-
   </header>
 
   <router-outlet></router-outlet>
-
 </div>
