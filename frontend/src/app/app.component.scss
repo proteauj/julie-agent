@@ -1,5 +1,7 @@
 .app-shell {
   min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
   background:
     radial-gradient(circle at top left, #d7fbf7 0, transparent 32%),
     linear-gradient(135deg, #f8fffe 0%, #eef7ff 55%, #fff5f8 100%);
@@ -9,6 +11,7 @@
 .container {
   max-width: 1000px;
   margin: 24px auto;
+  padding-bottom: 140px;
 }
 
 .senior-header {
@@ -91,7 +94,7 @@
 
   .container {
     margin-top: 12px;
-    padding-bottom: 140px;
+    padding-bottom: 180px;
   }
 
   .brand img {
