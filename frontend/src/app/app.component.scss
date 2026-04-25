@@ -80,8 +80,18 @@
 }
 
 @media (max-width: 700px) {
+  .senior-header {
+    position: static; // plus de sticky sur mobile
+    padding: 14px;
+  }
+
   .app-shell {
-    padding: 12px;
+    padding: 10px;
+  }
+
+  .container {
+    margin-top: 12px;
+    padding-bottom: 140px;
   }
 
   .brand img {
@@ -92,14 +102,27 @@
   .brand strong {
     font-size: 22px;
   }
-
-  .senior-header {
-    padding: 14px;
-  }
 }
 
 .senior-header {
   position: sticky;
   top: 12px;
   z-index: 10;
+}
+
+.icon-header-button.logout {
+  background: #fff1f2;
+  color: #b91c1c;
+  border: 1px solid #fecdd3;
+}
+
+.icon-header-button.logout:hover {
+  background: #ffe4e6;
+}
+
+.icon-header-button {
+  height: 40px;
+  min-width: 40px;
+  font-size: 18px;
+  border-radius: 12px;
 }

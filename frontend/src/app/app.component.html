@@ -25,8 +25,15 @@
       {{ 'NAV.LOGIN' | translate }}
     </a>
 
-    <button type="button" *ngIf="isLogged$ | async" class="header-button logout" (click)="logout()">
-      {{ 'NAV.LOGOUT' | translate }}
+    <button
+      type="button"
+      *ngIf="isLogged$ | async"
+      class="icon-header-button logout"
+      (click)="logout()"
+      aria-label="Déconnexion"
+      title="{{ 'NAV.LOGOUT' | translate }}"
+    >
+      ⏻
     </button>
   </header>
 
