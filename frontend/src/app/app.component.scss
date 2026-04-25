@@ -128,4 +128,22 @@
   min-width: 40px;
   font-size: 18px;
   border-radius: 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  background: #e8f8f7;
+  color: #075985;
+
+  font-weight: 700;
+
+  text-decoration: none; // 🔥 important pour <a>
+  cursor: pointer;
+}
+
+.icon-header-button:hover {
+  background: #c9f2ef;
 }

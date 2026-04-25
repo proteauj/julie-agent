@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { AuthService, AuthUser } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
   constructor(
     private translate: TranslateService,
     private auth: AuthService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {
     this.isLogged$ = this.auth.isLogged$;
     this.currentUser$ = this.auth.currentUser$;
@@ -33,5 +35,9 @@ export class AppComponent {
 
   logout() {
     this.auth.logout();
+  }
+
+  goHome() {
+    this.router.navigate(['/home']);
   }
 }

@@ -11,7 +11,7 @@
     <span class="spacer"></span>
 
     <button class="icon-header-button" (click)="goBack()" aria-label="Retour">←</button>
-    <a routerLink="/home" class="icon-header-button" aria-label="Accueil">🏠</a>
+    <a routerLink="/home" (click)="goHome()" class="icon-header-button" aria-label="Accueil">🏠</a>
 
     <button type="button" class="lang-button" (click)="switchLang('fr')">
       {{ 'LANG.FR' | translate }}
