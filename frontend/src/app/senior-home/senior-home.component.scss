@@ -1,50 +1,52 @@
-.senior-home-page {
-  gap: 1.5rem;
-}
-
-.senior-welcome {
-  text-align: center;
-}
-
-.senior-welcome h1 {
-  margin: 0;
-  font-size: 2.2rem;
-}
-
-.senior-welcome p {
-  margin: 0.75rem 0 0;
-  font-size: 1.3rem;
-}
-
-.senior-menu {
+.home-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
 }
 
-.senior-menu-button {
-  min-height: 150px;
-  padding: 1.25rem;
+.home-tile {
+  aspect-ratio: 1 / 1; // 🔥 carré parfait
   border-radius: 18px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  text-align: center;
-  font-size: 20px;
-}
+  gap: 8px;
 
-.senior-menu-icon {
-  font-size: 2.5rem;
-}
+  background: linear-gradient(180deg, #ffffff 0%, #e8f8f7 100%);
+  border: 1px solid #bdebe6;
 
-.senior-menu-label {
-  font-size: 1.35rem;
+  font-size: 22px;
   font-weight: 700;
+  color: #075985;
+
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.senior-menu-description {
-  font-size: 1rem;
-  opacity: 0.9;
+.home-tile span {
+  font-size: 16px;
+  text-align: center;
+}
+
+.home-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.home-tile:active {
+  transform: scale(0.97);
+}
+
+@media (min-width: 700px) {
+  .home-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .home-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

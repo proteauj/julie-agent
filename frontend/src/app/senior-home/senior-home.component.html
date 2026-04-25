@@ -5,15 +5,15 @@
   </section>
 
   <section class="senior-menu">
-    <button
-      *ngFor="let item of items"
-      class="senior-menu-button"
-      [routerLink]="item.route"
-      type="button"
-    >
-      <span class="senior-menu-icon">{{ item.icon }}</span>
-      <span class="senior-menu-label">{{ item.label | translate }}</span>
-      <span class="senior-menu-description">{{ item.description | translate }}</span>
-    </button>
+    <div class="home-grid">
+      <button
+        *ngFor="let item of items"
+        class="home-tile"
+        [routerLink]="item.route"
+      >
+        <div class="icon">{{ item.icon }}</div>
+        <span>{{ item.label | translate }}</span>
+      </button>
+    </div>
   </section>
 </div>
