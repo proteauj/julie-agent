@@ -1,4 +1,12 @@
 {
+  "APP": {
+    "NAME": "Aline Écoute",
+    "TAGLINE": "Votre compagne bienveillante"
+  },
+  "LANG": {
+    "FR": "FR",
+    "EN": "EN"
+  },
   "NAV": {
     "CHAT": "Chat",
     "AGENDA": "Agenda",

@@ -1,4 +1,12 @@
 {
+  "APP": {
+    "NAME": "Aline Care",
+    "TAGLINE": "Your caring companion"
+  },
+  "LANG": {
+    "FR": "FR",
+    "EN": "EN"
+  },
   "NAV": {
     "CHAT": "Chat",
     "AGENDA": "Agenda",

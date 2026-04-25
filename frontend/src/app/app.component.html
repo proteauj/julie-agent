@@ -3,8 +3,8 @@
     <a routerLink="/home" class="brand">
       <img src="assets/aline-logo.png" alt="Logo Aline Écoute" />
       <div>
-        <strong>Aline Écoute</strong>
-        <span>Votre compagne bienveillante</span>
+        <strong>{{ 'APP.NAME' | translate }}</strong>
+        <span>{{ 'APP.TAGLINE' | translate }}</span>
       </div>
     </a>
 
@@ -18,8 +18,13 @@
       🏠 {{ 'NAV.HOME' | translate }}
     </a>
 
-    <button type="button" class="lang-button" (click)="switchLang('fr')">FR</button>
-    <button type="button" class="lang-button" (click)="switchLang('en')">EN</button>
+    <button type="button" class="lang-button" (click)="switchLang('fr')">
+      {{ 'LANG.FR' | translate }}
+    </button>
+
+    <button type="button" class="lang-button" (click)="switchLang('en')">
+      {{ 'LANG.EN' | translate }}
+    </button>
 
     <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="header-button">
       {{ 'NAV.LOGIN' | translate }}
