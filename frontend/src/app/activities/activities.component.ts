@@ -85,7 +85,7 @@ export class ActivitiesComponent implements OnInit {
     this.success = '';
 
     this.http
-      .delete(`${environment.apiUrl}/activities/${activity.id}/register`)
+      .delete(`${environment.apiUrl}/activities/${activity.id}/unregister`)
       .subscribe({
         next: () => {
           this.success = 'Désinscription confirmée.';

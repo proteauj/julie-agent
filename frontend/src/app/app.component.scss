@@ -1,51 +1,99 @@
+.app-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, #d7fbf7 0, transparent 32%),
+    linear-gradient(135deg, #f8fffe 0%, #eef7ff 55%, #fff5f8 100%);
+  padding: 24px;
+}
+
 .container {
   max-width: 1000px;
-  margin: 30px auto;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px #0001;
-  border-radius: 16px;
-  background: #fff;
+  margin: 24px auto;
 }
 
 .senior-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 28px rgba(12, 74, 110, 0.12);
   display: flex;
-  gap: 0.75rem;
   align-items: center;
-  margin-bottom: 1.5rem;
+  gap: 12px;
   flex-wrap: wrap;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
 }
 
-.header-home,
-.header-link,
-.header-button,
-.lang-button {
-  min-height: 48px;
-  padding: 0.7rem 1rem;
-  border-radius: 12px;
-  font-weight: 700;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   text-decoration: none;
-  font-size: 18px;
+  color: #073763;
 }
 
-.header-home {
-  background: #e8f2ff;
-  color: #1d4ed8;
+.brand img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
 }
 
-.header-link {
-  color: #2d6cdf;
+.brand strong {
+  display: block;
+  font-size: 28px;
+  line-height: 1.1;
 }
 
-.header-button,
-.lang-button {
-  border: 1px solid #ccc;
-  background: #f8f8f8;
-  cursor: pointer;
-  color: #1f2937;
+.brand span {
+  display: block;
+  font-size: 15px;
+  color: #4b7285;
+  margin-top: 4px;
 }
 
 .spacer {
   flex: 1;
+}
+
+.header-button,
+.lang-button {
+  min-height: 48px;
+  padding: 0.7rem 1rem;
+  border-radius: 16px;
+  border: none;
+  background: #e8f8f7;
+  color: #075985;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header-button:hover,
+.lang-button:hover {
+  background: #c9f2ef;
+}
+
+.logout {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+@media (max-width: 700px) {
+  .app-shell {
+    padding: 12px;
+  }
+
+  .brand img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .brand strong {
+    font-size: 22px;
+  }
+
+  .senior-header {
+    padding: 14px;
+  }
 }

@@ -1,26 +1,36 @@
-<div class="container">
+<div class="app-shell">
   <header class="senior-header">
-    <button type="button" class="header-button" (click)="goBack()">
-      ← {{ 'NAV.BACK' | translate }}
-    </button>
-
-    <a routerLink="/home" class="header-home">
-      🏠 {{ 'NAV.HOME' | translate }}
+    <a routerLink="/home" class="brand">
+      <img src="assets/aline-logo.png" alt="Logo Aline Écoute" />
+      <div>
+        <strong>Aline Écoute</strong>
+        <span>Votre compagne bienveillante</span>
+      </div>
     </a>
 
     <span class="spacer"></span>
 
+    <button type="button" class="header-button" (click)="goBack()">
+      ← {{ 'NAV.BACK' | translate }}
+    </button>
+
+    <a routerLink="/home" class="header-button">
+      🏠 {{ 'NAV.HOME' | translate }}
+    </a>
+
     <button type="button" class="lang-button" (click)="switchLang('fr')">FR</button>
     <button type="button" class="lang-button" (click)="switchLang('en')">EN</button>
 
-    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="header-link">
+    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="header-button">
       {{ 'NAV.LOGIN' | translate }}
     </a>
 
-    <button type="button" *ngIf="isLogged$ | async" class="header-button" (click)="logout()">
+    <button type="button" *ngIf="isLogged$ | async" class="header-button logout" (click)="logout()">
       {{ 'NAV.LOGOUT' | translate }}
     </button>
   </header>
 
-  <router-outlet></router-outlet>
+  <main class="container">
+    <router-outlet></router-outlet>
+  </main>
 </div>
