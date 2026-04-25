@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import flatpickr from 'flatpickr';
+import { French } from 'flatpickr/dist/l10n/fr';
+import { Instance as FlatpickrInstance } from 'flatpickr/dist/types/instance';
 
 export interface Appointment {
   id: number;
@@ -23,10 +26,10 @@ const pickerOptions: any = {
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.scss']
 })
-export class AgendaComponent implements OnInit {
-  appointments: Appointment[] = [];
-  loading = false;
-  error = '';
+export class AgendaComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('startPicker') startPicker?: ElementRef<HTMLInputElement>;
+
+  private picker?: FlatpickrInstance;
 
   form = {
     title: '',
@@ -35,6 +38,32 @@ export class AgendaComponent implements OnInit {
     durationMinutes: 60,
     type: 'personal'
   };
+
+  ngAfterViewInit(): void {
+    if (!this.startPicker) return;
+
+    this.picker = flatpickr(this.startPicker.nativeElement, {
+      enableTime: true,
+      dateFormat: 'Y-m-d H:i',
+      altInput: true,
+      altFormat: 'd F Y à H:i',
+      minDate: 'today',
+      time_24hr: true,
+      minuteIncrement: 15,
+      locale: French,
+      disableMobile: true,
+      onChange: (_selectedDates, dateStr) => {
+        this.form.start = dateStr;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.picker?.destroy();
+  }
+  appointments: Appointment[] = [];
+  loading = false;
+  error = '';
 
   constructor(private http: HttpClient) {}
 
@@ -70,32 +99,24 @@ export class AgendaComponent implements OnInit {
       return;
     }
 
-    const startDate = new Date(this.form.start);
-    const now = new Date();
+    const startDate = new Date(this.form.start.replace(' ', 'T'));
 
-    if (!this.form.start) {
-      this.error = 'La date de début est requise.';
+    if (isNaN(startDate.getTime())) {
+      this.error = 'La date est obligatoire.';
       return;
     }
 
-    if (startDate < now) {
+    if (startDate < new Date()) {
       this.error = 'La date doit être dans le futur.';
       return;
     }
 
     const endDate = new Date(startDate);
-    endDate.setMinutes(endDate.getMinutes() + Number(this.form.durationMinutes || 60));
-
-    if (endDate <= startDate) {
-      this.error = 'La date de fin doit être après la date de début.';
-      return;
-    }
-
-    this.loading = true;
+    endDate.setMinutes(endDate.getMinutes() + this.form.durationMinutes);
 
     const payload = {
-      title: this.form.title.trim(),
-      description: this.form.description.trim(),
+      title: this.form.title,
+      description: this.form.description,
       start: startDate.toISOString(),
       end: endDate.toISOString(),
       type: this.form.type

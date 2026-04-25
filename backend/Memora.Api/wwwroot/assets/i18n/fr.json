@@ -1,0 +1,187 @@
+{
+  "APP": {
+    "NAME": "Aline Écoute",
+    "TAGLINE": "Votre compagne bienveillante"
+  },
+  "LANG": {
+    "FR": "FR",
+    "EN": "EN"
+  },
+  "NAV": {
+    "CHAT": "Chat",
+    "AGENDA": "Agenda",
+    "REMINDERS": "Rappels",
+    "ACTIVITIES": "Activités",
+    "PROFILE": "Profil",
+    "ADMIN": "Admin",
+    "LOGIN": "Connexion",
+    "LOGOUT": "Déconnexion",
+    "BACK": "Retour",
+    "HOME": "Accueil"
+  },
+
+  "COMMON": {
+    "LOADING": "Chargement...",
+    "EMAIL": "Email",
+    "PHONE": "Téléphone",
+    "SMS": "SMS",
+    "BOTH": "Les deux",
+    "ADD": "Ajouter",
+    "DELETE": "Supprimer",
+    "CREATE": "Créer",
+    "SAVE": "Enregistrer",
+    "RESET": "Réinitialiser",
+    "NONE": "Aucun",
+    "START": "Début",
+    "END": "Fin",
+    "TYPE": "Type",
+    "DESCRIPTION": "Description",
+    "TITLE": "Titre",
+    "NAME": "Nom",
+    "ACTIONS": "Actions"
+  },
+
+  "PROFILE": {
+    "TITLE": "Profil",
+    "EMAIL": "Email",
+    "NAME": "Nom",
+    "LANGUA": "Langue préférée",
+    "PHONE": "Téléphone",
+    "REMINDER_PREFERENCE": "Préférence rappel",
+    "LANG_FR": "Français",
+    "LANG_EN": "English"
+  },
+
+  "CHAT": {
+    "TITLE": "Chat",
+    "PLACEHOLDER": "Message...",
+    "SEND": "Envoyer"
+  },
+
+  "LOGIN": {
+    "TITLE": "Connexion",
+    "SUBMIT": "Se connecter",
+    "REGISTER_LINK": "Créer un compte"
+  },
+
+  "REGISTER": {
+    "TITLE": "Créer un compte",
+    "SUBMIT": "Créer le compte",
+    "LOGIN_LINK": "J’ai déjà un compte"
+  },
+
+  "ADMIN": {
+    "TITLE": "Admin résidence",
+    "CREATE_SENIOR": "Créer un compte sénior",
+    "CREATE_ACCOUNT": "Créer le compte",
+
+    "SENIORS_LIST": "Liste des séniors",
+    "NO_NAME": "Sans nom",
+    "NO_PHONE": "Aucun téléphone",
+    "RESET_PASSWORD": "Réinitialiser",
+
+    "CREATE_ACTIVITY": "Créer une activité",
+    "CREATE_ACTIVITY_BUTTON": "Créer l’activité",
+
+    "REGISTER_SENIOR_ACTIVITY": "Inscrire un sénior à une activité",
+    "SELECT_SENIOR": "Choisir un sénior",
+    "SELECT_ACTIVITY": "Choisir une activité",
+    "REGISTER": "Inscrire",
+
+    "ACTIVITIES_LIST": "Liste des activités",
+    "PLACES": "Places",
+
+    "ADD_DOCTOR": "Ajouter un médecin",
+    "DOCTORS_LIST": "Liste des médecins",
+    "BOOKING_URL": "URL de prise de rendez-vous",
+    "SPECIALTY": "Spécialité",
+
+    "SENIOR_ACCOUNT_CREATED": "Compte sénior créé.",
+    "PASSWORD_RESET_DONE": "Mot de passe réinitialisé.",
+    "ACTIVITY_CREATED": "Activité créée.",
+    "ACTIVITY_DELETED": "Activité supprimée.",
+    "SENIOR_REGISTERED": "Sénior inscrit à l’activité.",
+    "DOCTOR_ADDED": "Médecin ajouté.",
+    "DOCTOR_DELETED": "Médecin supprimé."
+  },
+
+  "AGENDA": {
+    "TITLE": "Mon agenda",
+    "ADD_APPOINTMENT": "Ajouter un rendez-vous",
+    "MY_APPOINTMENTS": "Mes rendez-vous",
+    "NO_APPOINTMENTS": "Aucun rendez-vous pour le moment.",
+    "PERSONAL": "Personnel",
+    "MEDICAL": "Médical",
+    "ACTIVITY": "Activité",
+    "TYPE_UNSPECIFIED": "Non précisé"
+  },
+
+  "REMINDERS": {
+    "TITLE": "Mes rappels",
+    "ADD_REMINDER": "Ajouter un rappel",
+    "MY_REMINDERS": "Mes rappels enregistrés",
+    "NO_REMINDERS": "Aucun rappel pour le moment.",
+    "DATE_TIME": "Date et heure",
+    "GENERAL": "Général",
+    "MEDICATION": "Médicament",
+    "APPOINTMENT": "Rendez-vous",
+    "ACTIVITY": "Activité",
+    "MEAL": "Repas",
+    "SLEEP": "Dodo",
+    "RECURRING": "Récurrent",
+    "CHOOSE_FREQUENCY": "Choisir une fréquence",
+    "DAILY": "Chaque jour",
+    "WEEKLY": "Chaque semaine",
+    "MONTHLY": "Chaque mois",
+    "CHANNEL": "Canal",
+    "RECURRENCE": "Récurrence",
+    "COMPLETED": "Complété",
+    "COMPLETE": "Compléter"
+  },
+
+  "ACTIVITIES": {
+    "TITLE": "Activités",
+    "NO_ACTIVITIES": "Aucune activité pour le moment.",
+    "PLACES": "Places",
+    "REGISTER": "M’inscrire",
+    "UNREGISTER": "Me désinscrire"
+  },
+  "HOME": {
+    "WELCOME": "Bonjour",
+    "QUESTION": "Que voulez-vous faire aujourd’hui ?",
+
+    "CHAT": "Parler à Aline",
+    "CHAT_DESC": "Discuter ou demander de l’aide",
+
+    "AGENDA": "Agenda",
+    "AGENDA_DESC": "Voir mes rendez-vous",
+
+    "REMINDERS": "Rappels",
+    "REMINDERS_DESC": "Médicaments et activités",
+
+    "ACTIVITIES": "Activités",
+    "ACTIVITIES_DESC": "Voir les activités",
+
+    "PROFILE": "Profil",
+    "PROFILE_DESC": "Mes informations"
+  },
+  "TYPES": {
+    "PERSONAL": "Personnel",
+    "MEDICAL": "Médical",
+    "ACTIVITY": "Activité",
+    "GENERAL": "Général",
+    "MEDICATION": "Médicament",
+    "APPOINTMENT": "Rendez-vous",
+    "MEAL": "Repas",
+    "SLEEP": "Sommeil"
+  },
+  "CHANNELS": {
+    "SMS": "SMS",
+    "EMAIL": "Email",
+    "BOTH": "SMS et email"
+  },
+  "STATUS": {
+    "DONE": "Complété",
+    "PENDING": "À venir"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "APP": {
+    "NAME": "Aline Care",
+    "TAGLINE": "Your caring companion"
+  },
+  "LANG": {
+    "FR": "FR",
+    "EN": "EN"
+  },
+  "NAV": {
+    "CHAT": "Chat",
+    "AGENDA": "Agenda",
+    "REMINDERS": "Reminders",
+    "ACTIVITIES": "Activities",
+    "PROFILE": "Profile",
+    "ADMIN": "Admin",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "BACK": "Back",
+    "HOME": "Home"
+  },
+
+  "COMMON": {
+    "LOADING": "Loading...",
+    "EMAIL": "Email",
+    "PHONE": "Phone",
+    "SMS": "SMS",
+    "BOTH": "Both",
+    "ADD": "Add",
+    "DELETE": "Delete",
+    "CREATE": "Create",
+    "SAVE": "Save",
+    "RESET": "Reset",
+    "NONE": "None",
+    "START": "Start",
+    "END": "End",
+    "TYPE": "Type",
+    "DESCRIPTION": "Description",
+    "TITLE": "Title",
+    "NAME": "Name",
+    "ACTIONS": "Actions"
+  },
+
+  "PROFILE": {
+    "TITLE": "Profile",
+    "EMAIL": "Email",
+    "NAME": "Name",
+    "LANGUA": "Preferred language",
+    "PHONE": "Phone",
+    "REMINDER_PREFERENCE": "Reminder preference",
+    "LANG_FR": "French",
+    "LANG_EN": "English"
+  },
+
+  "CHAT": {
+    "TITLE": "Chat",
+    "PLACEHOLDER": "Message...",
+    "SEND": "Send"
+  },
+
+  "LOGIN": {
+    "TITLE": "Login",
+    "SUBMIT": "Sign in",
+    "REGISTER_LINK": "Create an account"
+  },
+
+  "REGISTER": {
+    "TITLE": "Create an account",
+    "SUBMIT": "Create account",
+    "LOGIN_LINK": "I already have an account"
+  },
+
+  "ADMIN": {
+    "TITLE": "Residence admin",
+    "CREATE_SENIOR": "Create a senior account",
+    "CREATE_ACCOUNT": "Create account",
+
+    "SENIORS_LIST": "Seniors list",
+    "NO_NAME": "No name",
+    "NO_PHONE": "No phone",
+    "RESET_PASSWORD": "Reset password",
+
+    "CREATE_ACTIVITY": "Create an activity",
+    "CREATE_ACTIVITY_BUTTON": "Create activity",
+
+    "REGISTER_SENIOR_ACTIVITY": "Register a senior to an activity",
+    "SELECT_SENIOR": "Choose a senior",
+    "SELECT_ACTIVITY": "Choose an activity",
+    "REGISTER": "Register",
+
+    "ACTIVITIES_LIST": "Activities list",
+    "PLACES": "Spots",
+
+    "ADD_DOCTOR": "Add a doctor",
+    "DOCTORS_LIST": "Doctors list",
+    "BOOKING_URL": "Booking URL",
+    "SPECIALTY": "Specialty",
+
+    "SENIOR_ACCOUNT_CREATED": "Senior account created.",
+    "PASSWORD_RESET_DONE": "Password reset completed.",
+    "ACTIVITY_CREATED": "Activity created.",
+    "ACTIVITY_DELETED": "Activity deleted.",
+    "SENIOR_REGISTERED": "Senior registered.",
+    "DOCTOR_ADDED": "Doctor added.",
+    "DOCTOR_DELETED": "Doctor deleted."
+  },
+
+  "AGENDA": {
+    "TITLE": "My agenda",
+    "ADD_APPOINTMENT": "Add an appointment",
+    "MY_APPOINTMENTS": "My appointments",
+    "NO_APPOINTMENTS": "No appointments for now.",
+    "PERSONAL": "Personal",
+    "MEDICAL": "Medical",
+    "ACTIVITY": "Activity",
+    "TYPE_UNSPECIFIED": "Unspecified"
+  },
+
+  "REMINDERS": {
+    "TITLE": "My reminders",
+    "ADD_REMINDER": "Add a reminder",
+    "MY_REMINDERS": "My saved reminders",
+    "NO_REMINDERS": "No reminders for now.",
+    "DATE_TIME": "Date and time",
+    "GENERAL": "General",
+    "MEDICATION": "Medication",
+    "APPOINTMENT": "Appointment",
+    "ACTIVITY": "Activity",
+    "MEAL": "Meal",
+    "SLEEP": "Sleep",
+    "RECURRING": "Recurring",
+    "CHOOSE_FREQUENCY": "Choose a frequency",
+    "DAILY": "Every day",
+    "WEEKLY": "Every week",
+    "MONTHLY": "Every month",
+    "CHANNEL": "Channel",
+    "RECURRENCE": "Recurrence",
+    "COMPLETED": "Completed",
+    "COMPLETE": "Complete"
+  },
+  "ACTIVITIES": {
+    "TITLE": "Activities",
+    "NO_ACTIVITIES": "No activities for now.",
+    "PLACES": "Spots",
+    "REGISTER": "Register",
+    "UNREGISTER": "Unregister"
+  },
+  "HOME": {
+    "WELCOME": "Hello",
+    "QUESTION": "What would you like to do today?",
+
+    "CHAT": "Talk to Aline",
+    "CHAT_DESC": "Ask for help or chat",
+
+    "AGENDA": "Agenda",
+    "AGENDA_DESC": "View my appointments",
+
+    "REMINDERS": "Reminders",
+    "REMINDERS_DESC": "Medications and activities",
+
+    "ACTIVITIES": "Activities",
+    "ACTIVITIES_DESC": "View available activities",
+
+    "PROFILE": "Profile",
+    "PROFILE_DESC": "My information"
+  },
+  "TYPES": {
+    "PERSONAL": "Personal",
+    "MEDICAL": "Medical",
+    "ACTIVITY": "Activity",
+    "GENERAL": "General",
+    "MEDICATION": "Medication",
+    "APPOINTMENT": "Appointment",
+    "MEAL": "Meal",
+    "SLEEP": "Sleep"
+  },
+  "CHANNELS": {
+    "SMS": "SMS",
+    "EMAIL": "Email",
+    "BOTH": "SMS and email"
+  },
+  "STATUS": {
+    "DONE": "Completed",
+    "PENDING": "Upcoming"
+  }
+}

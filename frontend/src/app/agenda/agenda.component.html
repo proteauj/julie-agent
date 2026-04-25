@@ -18,19 +18,16 @@
           [placeholder]="'COMMON.DESCRIPTION' | translate"
         ></textarea>
 
-        <label>
+        <label class="required-label">
           {{ 'COMMON.START' | translate }}
           <input
+            #startPicker
             type="text"
-            placeholder="Choisir une date et heure"
-            [(ngModel)]="form.start"
-            [flatpickr]="pickerOptions"
+            name="start"
+            readonly
+            required
+            [placeholder]="'AGENDA.CHOOSE_DATE' | translate"
           />
-        </label>
-
-        <label>
-          {{ 'COMMON.END' | translate }}
-          <input [(ngModel)]="form.end" type="datetime-local" />
         </label>
 
         <select [(ngModel)]="form.type">
