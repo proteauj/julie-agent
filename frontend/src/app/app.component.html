@@ -7,22 +7,22 @@
         <span>{{ 'APP.TAGLINE' | translate }}</span>
       </div>
     </a>
+  </header>
 
-    <span class="spacer"></span>
+  <main class="container">
+    <router-outlet></router-outlet>
+  </main>
 
-    <button class="icon-header-button" (click)="goBack()" aria-label="Retour">←</button>
-    <a routerLink="/home" (click)="goHome()" class="icon-header-button" aria-label="Accueil">🏠</a>
+  <nav class="bottom-nav">
+    <a routerLink="/home" class="icon-header-button" [title]="'NAV.HOME' | translate">
+      🏠
+    </a>
 
-    <button type="button" class="lang-button" (click)="switchLang('fr')">
-      {{ 'LANG.FR' | translate }}
-    </button>
+    <button type="button" class="icon-header-button" (click)="switchLang('fr')">FR</button>
+    <button type="button" class="icon-header-button" (click)="switchLang('en')">EN</button>
 
-    <button type="button" class="lang-button" (click)="switchLang('en')">
-      {{ 'LANG.EN' | translate }}
-    </button>
-
-    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="header-button">
-      {{ 'NAV.LOGIN' | translate }}
+    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="icon-header-button">
+      🔐
     </a>
 
     <button
@@ -30,14 +30,8 @@
       *ngIf="isLogged$ | async"
       class="icon-header-button logout"
       (click)="logout()"
-      aria-label="Déconnexion"
-      title="{{ 'NAV.LOGOUT' | translate }}"
     >
       ⏻
     </button>
-  </header>
-
-  <main class="container">
-    <router-outlet></router-outlet>
-  </main>
+  </nav>
 </div>

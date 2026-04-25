@@ -29,10 +29,6 @@ export class AppComponent {
     this.translate.use(lang);
   }
 
-  goBack() {
-    this.location.back();
-  }
-
   logout() {
     this.auth.logout();
   }
