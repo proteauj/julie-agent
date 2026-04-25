@@ -164,5 +164,24 @@
 
     "PROFILE": "Profil",
     "PROFILE_DESC": "Mes informations"
+  },
+  "TYPES": {
+    "PERSONAL": "Personnel",
+    "MEDICAL": "Médical",
+    "ACTIVITY": "Activité",
+    "GENERAL": "Général",
+    "MEDICATION": "Médicament",
+    "APPOINTMENT": "Rendez-vous",
+    "MEAL": "Repas",
+    "SLEEP": "Sommeil"
+  },
+  "CHANNELS": {
+    "SMS": "SMS",
+    "EMAIL": "Email",
+    "BOTH": "SMS et email"
+  },
+  "STATUS": {
+    "DONE": "Complété",
+    "PENDING": "À venir"
   }
 }

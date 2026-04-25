@@ -109,4 +109,17 @@ export class AgendaComponent implements OnInit {
       timeStyle: 'short'
     });
   }
+
+  typeLabel(type?: string): string {
+    switch (type) {
+      case 'personal':
+        return 'TYPES.PERSONAL';
+      case 'medical':
+        return 'TYPES.MEDICAL';
+      case 'activity':
+        return 'TYPES.ACTIVITY';
+      default:
+        return 'COMMON.NONE';
+    }
+  }
 }

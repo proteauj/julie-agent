@@ -10,13 +10,8 @@
 
     <span class="spacer"></span>
 
-    <button type="button" class="header-button" (click)="goBack()">
-      ← {{ 'NAV.BACK' | translate }}
-    </button>
-
-    <a routerLink="/home" class="header-button">
-      🏠 {{ 'NAV.HOME' | translate }}
-    </a>
+    <button class="icon-header-button" (click)="goBack()" aria-label="Retour">←</button>
+    <a routerLink="/home" class="icon-header-button" aria-label="Accueil">🏠</a>
 
     <button type="button" class="lang-button" (click)="switchLang('fr')">
       {{ 'LANG.FR' | translate }}

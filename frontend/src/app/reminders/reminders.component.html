@@ -78,13 +78,14 @@
           <br />
 
           <span>
+            {{ 'COMMON.TYPE' | translate }} :
+            {{ typeLabel(reminder.type) | translate }}
+          </span>
+
+          <span>
             {{ 'REMINDERS.CHANNEL' | translate }} :
             {{ channelLabel(reminder.channel) | translate }}
           </span>
-          <br />
-
-          <span>{{ 'REMINDERS.CHANNEL' | translate }} : {{ reminder.channel }}</span>
-          <br />
 
           <span *ngIf="reminder.isRecurring">
             {{ 'REMINDERS.RECURRENCE' | translate }} : {{ reminder.recurrenceRule }}

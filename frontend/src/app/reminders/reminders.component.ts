@@ -125,14 +125,33 @@ export class RemindersComponent implements OnInit {
     });
   }
 
-  channelLabel(channel: string): string {
+  typeLabel(type?: string): string {
+    switch (type) {
+      case 'general':
+        return 'TYPES.GENERAL';
+      case 'medication':
+        return 'TYPES.MEDICATION';
+      case 'appointment':
+        return 'TYPES.APPOINTMENT';
+      case 'activity':
+        return 'TYPES.ACTIVITY';
+      case 'meal':
+        return 'TYPES.MEAL';
+      case 'sleep':
+        return 'TYPES.SLEEP';
+      default:
+        return 'COMMON.NONE';
+    }
+  }
+
+  channelLabel(channel?: string): string {
     switch (channel) {
       case 'sms':
-        return 'COMMON.SMS';
+        return 'CHANNELS.SMS';
       case 'email':
-        return 'COMMON.EMAIL';
+        return 'CHANNELS.EMAIL';
       case 'both':
-        return 'COMMON.BOTH';
+        return 'CHANNELS.BOTH';
       default:
         return 'COMMON.NONE';
     }

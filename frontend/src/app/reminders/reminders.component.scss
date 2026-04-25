@@ -15,3 +15,12 @@
 .reminder-row:first-child {
   border-top: none;
 }
+
+.form-actions button,
+.complete-button {
+  white-space: nowrap;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 16px;
+  line-height: 1;
+}

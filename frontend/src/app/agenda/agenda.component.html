@@ -67,7 +67,7 @@
 
           <span>
             {{ 'COMMON.TYPE' | translate }} :
-            {{ appointment.type || ('AGENDA.TYPE_UNSPECIFIED' | translate) }}
+            {{ typeLabel(appointment.type) | translate }}
           </span>
         </div>
       </div>
