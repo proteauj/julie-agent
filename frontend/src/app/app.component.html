@@ -14,24 +14,29 @@
   </main>
 
   <nav class="bottom-nav">
-    <a routerLink="/home" class="icon-header-button" [title]="'NAV.HOME' | translate">
-      🏠
+    <a routerLink="/home" class="bottom-nav-button" [title]="'NAV.HOME' | translate">
+      <span class="bottom-nav-icon">🏠</span>
+      <span class="bottom-nav-label">{{ 'NAV.HOME' | translate }}</span>
     </a>
 
-    <button type="button" class="icon-header-button" (click)="switchLang('fr')">FR</button>
-    <button type="button" class="icon-header-button" (click)="switchLang('en')">EN</button>
+    <button type="button" class="bottom-nav-button" (click)="switchLang('fr')">
+      <span class="bottom-nav-icon">FR</span>
+      <span class="bottom-nav-label">{{ 'LANG.FR' | translate }}</span>
+    </button>
 
-    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="icon-header-button">
-      🔐
+    <button type="button" class="bottom-nav-button" (click)="switchLang('en')">
+      <span class="bottom-nav-icon">EN</span>
+      <span class="bottom-nav-label">{{ 'LANG.EN' | translate }}</span>
+    </button>
+
+    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="bottom-nav-button">
+      <span class="bottom-nav-icon">🔐</span>
+      <span class="bottom-nav-label">{{ 'NAV.LOGIN' | translate }}</span>
     </a>
 
-    <button
-      type="button"
-      *ngIf="isLogged$ | async"
-      class="icon-header-button logout"
-      (click)="logout()"
-    >
-      ⏻
+    <button type="button" *ngIf="isLogged$ | async" class="bottom-nav-button logout" (click)="logout()">
+      <span class="bottom-nav-icon">⏻</span>
+      <span class="bottom-nav-label">{{ 'NAV.LOGOUT' | translate }}</span>
     </button>
   </nav>
 </div>
