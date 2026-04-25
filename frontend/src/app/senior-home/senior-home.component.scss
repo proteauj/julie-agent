@@ -3,19 +3,24 @@
 }
 
 .senior-welcome {
+  padding: 8px 10px;
   text-align: center;
-  padding: 10px 12px;
 }
 
 .senior-welcome h1 {
   margin: 0;
-  font-size: 1.85rem;
-  line-height: 1.1;
+  font-size: 1.45rem;
+  line-height: 1.05;
 }
 
 .senior-welcome p {
-  margin: 4px 0 0;
-  font-size: 1rem;
+  margin: 3px 0 0;
+}
+
+@media (max-width: 700px) {
+  .senior-welcome p {
+    display: none;
+  }
 }
 
 .senior-menu {
@@ -30,7 +35,7 @@
 
 .home-tile {
   aspect-ratio: 1 / 1;
-  min-height: 128px;
+  min-height: 132px;
   border-radius: 20px;
 
   display: flex;
@@ -39,13 +44,13 @@
   justify-content: center;
   gap: 10px;
 
-  background: linear-gradient(160deg, #dbeafe 0%, #bfdbfe 48%, #99f6e4 100%);
-  border: 2px solid #60a5fa;
-  color: #073763;
+  background: #0ea5a3;
+  border: 2px solid #0f766e;
+  color: white;
 
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.16);
+  box-shadow: 0 8px 18px rgba(14, 165, 163, 0.24);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 

@@ -204,4 +204,29 @@ a {
   .form-actions .button {
     width: 100%;
   }
+
+  .flatpickr-calendar {
+    border-radius: 16px;
+    border: 1px solid #bdebe6;
+  }
+
+  .flatpickr-day.selected,
+  .flatpickr-day.startRange,
+  .flatpickr-day.endRange {
+    background: #0ea5a3;
+    border-color: #0ea5a3;
+  }
+
+  .flatpickr-day:hover {
+    background: #ccfbf1;
+  }
+
+  .flatpickr-time input {
+    color: #0f766e;
+    font-weight: 600;
+  }
+
+  .flatpickr-current-month {
+    color: #0f766e;
+  }
 }

@@ -15,6 +15,7 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { RemindersComponent } from './reminders/reminders.component';
 import { ActivitiesComponent } from './activities/activities.component';
 import { SeniorHomeComponent } from './senior-home/senior-home.component';
+import { Ng2FlatpickrModule } from 'ng2-flatpickr';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SeniorHomeComponent } from './senior-home/senior-home.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    AppTranslateModule
+    AppTranslateModule,
+    Ng2FlatpickrModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

@@ -24,11 +24,6 @@ export function initTranslate(translate: TranslateService) {
 }
 
 @NgModule({
-  exports: [
-    TranslateModule,
-    FormsModule,
-    HttpClientModule
-  ],
   imports: [
     HttpClientModule,
     FormsModule,
@@ -40,13 +35,10 @@ export function initTranslate(translate: TranslateService) {
       }
     })
   ],
-  providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initTranslate,
-      deps: [TranslateService],
-      multi: true
-    }
+  exports: [
+    TranslateModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class AppTranslateModule {}

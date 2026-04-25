@@ -20,7 +20,12 @@
 
         <label>
           {{ 'COMMON.START' | translate }}
-          <input [(ngModel)]="form.start" type="datetime-local" />
+          <input
+            type="text"
+            placeholder="Choisir une date et heure"
+            [(ngModel)]="form.start"
+            [flatpickr]="pickerOptions"
+          />
         </label>
 
         <label>

@@ -48,9 +48,11 @@ export class RemindersComponent implements OnInit {
 
     this.http.get<Reminder[]>(`${environment.apiUrl}/reminders/mine`).subscribe({
       next: reminders => {
-        this.reminders = [...reminders].sort(
-          (a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime()
-        );
+        const now = new Date();
+
+        this.reminders = [...reminders]
+          .filter(r => !r.isDone && new Date(r.scheduledAt) >= now)
+          .sort((a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime());
         this.loading = false;
       },
       error: err => {

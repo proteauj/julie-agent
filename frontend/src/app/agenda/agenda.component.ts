@@ -12,6 +12,12 @@ export interface Appointment {
   userId?: number;
 }
 
+const pickerOptions: any = {
+  enableTime: false,
+  dateFormat: 'Y-m-d',
+  minDate: 'today'
+};
+
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
@@ -26,7 +32,7 @@ export class AgendaComponent implements OnInit {
     title: '',
     description: '',
     start: '',
-    end: '',
+    durationMinutes: 60,
     type: 'personal'
   };
 
@@ -42,9 +48,11 @@ export class AgendaComponent implements OnInit {
 
     this.http.get<Appointment[]>(`${environment.apiUrl}/appointments/mine`).subscribe({
       next: appointments => {
-        this.appointments = [...appointments].sort(
-          (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
-        );
+        const now = new Date();
+
+        this.appointments = [...appointments]
+          .filter(a => new Date(a.end || a.start) >= now)
+          .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime());
         this.loading = false;
       },
       error: err => {
@@ -62,13 +70,21 @@ export class AgendaComponent implements OnInit {
       return;
     }
 
-    if (!this.form.start || !this.form.end) {
-      this.error = 'Les dates de début et de fin sont requises.';
+    const startDate = new Date(this.form.start);
+    const now = new Date();
+
+    if (!this.form.start) {
+      this.error = 'La date de début est requise.';
       return;
     }
 
-    const startDate = new Date(this.form.start);
-    const endDate = new Date(this.form.end);
+    if (startDate < now) {
+      this.error = 'La date doit être dans le futur.';
+      return;
+    }
+
+    const endDate = new Date(startDate);
+    endDate.setMinutes(endDate.getMinutes() + Number(this.form.durationMinutes || 60));
 
     if (endDate <= startDate) {
       this.error = 'La date de fin doit être après la date de début.';
@@ -91,7 +107,7 @@ export class AgendaComponent implements OnInit {
           title: '',
           description: '',
           start: '',
-          end: '',
+          durationMinutes: 60,
           type: 'personal'
         };
         this.loadAppointments();
