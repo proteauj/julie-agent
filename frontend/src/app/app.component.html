@@ -29,12 +29,12 @@
       <span class="bottom-nav-label">{{ 'LANG.EN' | translate }}</span>
     </button>
 
-    <a routerLink="/login" *ngIf="!(isLogged$ | async)" class="bottom-nav-button">
-      <span class="bottom-nav-icon">🔐</span>
-      <span class="bottom-nav-label">{{ 'NAV.LOGIN' | translate }}</span>
-    </a>
-
-    <button type="button" *ngIf="isLogged$ | async" class="bottom-nav-button logout" (click)="logout()">
+    <button
+      type="button"
+      *ngIf="isLogged$ | async"
+      class="bottom-nav-button logout"
+      (click)="logout()"
+    >
       <span class="bottom-nav-icon">⏻</span>
       <span class="bottom-nav-label">{{ 'NAV.LOGOUT' | translate }}</span>
     </button>

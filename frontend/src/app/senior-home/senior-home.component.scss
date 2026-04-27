@@ -34,24 +34,29 @@
 }
 
 .home-tile {
-  aspect-ratio: 1 / 1;
-  min-height: 132px;
-  border-radius: 20px;
+  aspect-ratio: 1 / 0.82;
+  min-height: 108px;
+  border-radius: 18px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
 
   background: #0ea5a3;
-  border: 2px solid #0f766e;
+  border: none;
   color: white;
 
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(14, 165, 163, 0.24);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.home-tile:hover {
+  background: #0f766e;
+  box-shadow: 0 10px 22px rgba(14, 165, 163, 0.3);
 }
 
 .home-tile .icon {
@@ -61,11 +66,6 @@
 .home-tile span {
   font-size: 16px;
   text-align: center;
-}
-
-.home-tile:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.22);
 }
 
 .home-tile:active {
@@ -102,6 +102,6 @@
   }
 
   .home-tile {
-    min-height: 132px;
+    min-height: 112px;
   }
 }
